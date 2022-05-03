@@ -17,11 +17,6 @@ class MainActivity : AppCompatActivity() {
         this.onSignInResult(res)
     }
 
-    // Choose authentication providers
-    val providers = arrayListOf(
-        AuthUI.IdpConfig.EmailBuilder().build(),
-        AuthUI.IdpConfig.GoogleBuilder().build())
-
     private fun createSignInIntent() {
         // [START auth_fui_create_intent]
         // Choose authentication providers
@@ -63,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             // sign-in flow using the back button. Otherwise check
             // response.getError().getErrorCode() and handle the error.
             // ...
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, response?.error?.localizedMessage, Toast.LENGTH_SHORT).show()
         }
     }
 
