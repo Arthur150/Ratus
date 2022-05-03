@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Ratus</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="firebase_client_id">79759232563-2sj88ruor2q4ted99q13iiv78ho177oe.apps.googleusercontent.com</string>
+    <string name="hello_blank_fragment">hello_blank_fragment</string>
 </resources>

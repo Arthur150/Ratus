@@ -14,6 +14,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ratus"
-        tools:srcCompat="@mipmap/ratus" />
+        app:srcCompat="@drawable/ratus"
+        tools:srcCompat="@drawable/ratus" />
 </androidx.constraintlayout.widget.ConstraintLayout>
