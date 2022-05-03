@@ -1,8 +1,8 @@
-name: Workflow - Feature
+name: Workflow - Merge Develop
 on:
   push:
     branches:
-      - 'feature/*'
+      - 'develop'
 jobs:
   build_apk:
     runs-on: ubuntu-20.04
