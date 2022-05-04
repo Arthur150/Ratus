@@ -1,12 +1,14 @@
 package fr.univ.lyon1.lpiem.ratus.model
 
-import com.google.type.DateTime
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Exclude
 
 data class Recurrence(
-    val start : DateTime?,
-    val end : DateTime?,
-    val type : String
+    val start : Timestamp? = null,
+    val end : Timestamp? = null,
+    val type : String = ""
 ){
+    @Exclude
     fun recurrenceType() : RecurrenceType {
         when (type) {
             "none" -> return RecurrenceType.NONE
