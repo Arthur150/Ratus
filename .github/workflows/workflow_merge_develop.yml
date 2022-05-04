@@ -3,14 +3,14 @@ on:
   push:
     branches:
       - 'develop'
-      - 'feature/*'
+      - 'feature/CI'
 jobs:
   build_apk:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x gradlew
-      - run: chmod +x ./shell/decrypt.sh
+      - run: chmod +x shell/decrypt.sh
       - run: |
           KEYSTORE_P12_ASC_FILE="keystore.asc"
           echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}"
