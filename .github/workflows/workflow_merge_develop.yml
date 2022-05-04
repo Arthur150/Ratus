@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - 'develop'
+      - 'feature/*'
 jobs:
   build_apk:
     runs-on: ubuntu-20.04
@@ -25,6 +26,14 @@ jobs:
             --batch \
             --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${KEYSTORE_PROPERTIES_ASC_FILE}"> "keystore.properties"
+      - run: |
+          GOOGLE_SERVICES_ASC_FILE="google-services.asc"
+          echo "${{ secrets.GOOGLE_SERVICES }}">>"${GOOGLE_SERVICES_ASC_FILE}"
+          gpg \
+            -d \
+            --batch \
+            --passphrase "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+            "${GOOGLE_SERVICES_ASC_FILE}"> "./app/google-services.json"
       - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
       - uses: actions/upload-artifact@v3
         with:
