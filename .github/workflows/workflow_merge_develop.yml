@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: chmod +x gradlew
+      - run: chmod +x ./shell/decrypt.sh
       - run: |
           KEYSTORE_P12_ASC_FILE="keystore.asc"
           echo "${{ secrets.KEYSTORE_P12}}">>"${KEYSTORE_P12_ASC_FILE}"
@@ -23,7 +24,7 @@ jobs:
       - run: |
           GOOGLE_SERVICES_ASC_FILE="google-services.asc"
           echo "${{ secrets.GOOGLE_SERVICES }}">>"${GOOGLE_SERVICES_ASC_FILE}"
-          ./shell/decrypt.sh "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
+          ./shell/decrypt.sh  "$(echo "${{ secrets.PASSWORD }}" | base64 --decode)" \
             "${GOOGLE_SERVICES_ASC_FILE}"> "./app/google-services.json"
       - run: ./gradlew -Pversion.buildNumber="${GITHUB_RUN_NUMBER}" assembleDevelopmentRelease
       - uses: actions/upload-artifact@v3
