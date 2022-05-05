@@ -1,16 +1,23 @@
 package fr.univ.lyon1.lpiem.ratus.ui.budget
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.text.NumberFormat
+import java.util.*
 
 class BudgetFragment : Fragment() {
+
+    private val viewModel by viewModel<BudgetViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,11 +25,26 @@ class BudgetFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_budget, container, false)
 
-        //TODO call
-
         val amountTextView = view.findViewById<TextView>(R.id.budgetAmount)
         val addTransactionButton = view.findViewById<Button>(R.id.budgetAddTransactionButton)
         val transactionRecyclerView = view.findViewById<RecyclerView>(R.id.budgetTransactionList)
+
+        transactionRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        addTransactionButton.setOnClickListener {
+            this.findNavController().navigate(R.id.action_budgetFragment_to_transactionInfosFragment)
+        }
+
+        val numberFormat = NumberFormat.getInstance()
+        numberFormat.maximumFractionDigits = 2
+        numberFormat.currency = Currency.getInstance("EUR")
+
+        viewModel.budget.observe(viewLifecycleOwner) { budget ->
+            amountTextView.text = "${numberFormat.format(budget.balance)} ${numberFormat.currency.symbol}"
+            transactionRecyclerView.adapter = TransactionAdapter(budget.transactions.sortedByDescending { transaction ->
+                transaction.date
+            })
+        }
 
         return view
     }

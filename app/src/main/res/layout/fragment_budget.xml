@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="136dp"
         android:text="@string/_0_00"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,9 +32,22 @@
         android:id="@+id/budgetTransactionList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/budgetTransactionTextView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:listitem="@layout/view_holder_transaction" />
+
+    <TextView
+        android:id="@+id/budgetTransactionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="52dp"
+        android:text="@string/my_transactions"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/budgetAddTransactionButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

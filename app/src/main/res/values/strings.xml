@@ -5,4 +5,8 @@
     <string name="budget">Budget</string>
     <string name="_0_00">0,00 €</string>
     <string name="add_a_transaction">Add a transaction</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="category_icon">category icon</string>
+    <string name="my_transactions">My transactions</string>
 </resources>
