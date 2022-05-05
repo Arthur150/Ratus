@@ -10,13 +10,11 @@ class MainActivityViewModel(
     private val useCase: GetUserUseCase
 ) : ViewModel() {
 
-    var user : LiveData<User?> = MutableLiveData()
+    var user : MutableLiveData<User?> = MutableLiveData()
 
     fun getUser(uid : String) {
         viewModelScope.launch {
-            val result = MutableLiveData<User?>()
-            user = result
-            result.postValue(useCase(uid))
+            user.postValue(useCase(uid))
         }
     }
 }

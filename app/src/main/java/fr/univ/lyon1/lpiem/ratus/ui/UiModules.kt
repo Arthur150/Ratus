@@ -8,7 +8,7 @@ import org.koin.dsl.module
 object UiModules {
     private val firebaseModule = module {
         viewModel {
-            parameters -> MainActivityViewModel(parameters.get(), get())
+            MainActivityViewModel(get())
         }
     }
 
