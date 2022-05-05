@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/budgetFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.BudgetFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.budget.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" >
         <action

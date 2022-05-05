@@ -63,12 +63,15 @@ class MainActivity : AppCompatActivity() {
                 }
                 viewModel.getUser(user.uid)
             }
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
+            /*
             AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener {
                     Toast.makeText(this, "Disconnect", Toast.LENGTH_SHORT).show()
                 }
+            */
+
             // ...
         } else {
             // Sign in failed. If response is null the user canceled the
