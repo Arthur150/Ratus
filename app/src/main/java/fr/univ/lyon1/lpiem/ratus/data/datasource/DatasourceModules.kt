@@ -11,6 +11,10 @@ object DatasourceModules {
         single<FundRemoteDataSource> {
             FundRemoteDataSourceImpl(get())
         }
+
+        single<TrickRemoteDataSource> {
+            TrickRemoteDataSourceImpl(get())
+        }
     }
 
     val all = arrayOf(firebaseModule)

@@ -2,7 +2,6 @@ package fr.univ.lyon1.lpiem.ratus.data.datasource
 
 import fr.univ.lyon1.lpiem.ratus.data.networking.FundNetworking
 import fr.univ.lyon1.lpiem.ratus.model.Fund
-import java.lang.IllegalStateException
 
 class FundRemoteDataSourceImpl(
     private val networking: FundNetworking

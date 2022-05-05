@@ -11,6 +11,10 @@ object RepositoryModules {
         single<FundRepository> {
             FundRepositoryImpl(get())
         }
+
+        single<TrickRepository> {
+            TrickRepositoryImpl(get())
+        }
     }
 
     val all = arrayOf(firebaseModule)

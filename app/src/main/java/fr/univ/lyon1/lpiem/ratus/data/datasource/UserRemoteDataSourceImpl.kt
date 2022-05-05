@@ -2,7 +2,6 @@ package fr.univ.lyon1.lpiem.ratus.data.datasource
 
 import fr.univ.lyon1.lpiem.ratus.data.networking.UserNetworking
 import fr.univ.lyon1.lpiem.ratus.model.User
-import java.lang.IllegalStateException
 
 class UserRemoteDataSourceImpl(
     private val networking: UserNetworking
