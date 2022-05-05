@@ -6,7 +6,11 @@ object NetworkingModules {
 
     private val firebaseModule = module {
         single {
-            GetUserNetworking()
+            UserNetworking()
+        }
+
+        single {
+            FundNetworking()
         }
     }
 

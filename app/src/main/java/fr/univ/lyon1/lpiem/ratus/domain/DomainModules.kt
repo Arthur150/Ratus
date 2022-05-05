@@ -7,6 +7,14 @@ object DomainModules {
         factory {
             GetUserUseCase(get())
         }
+
+        factory {
+            GetUserFundsUseCase(get())
+        }
+
+        factory {
+            GetFundUseCase(get())
+        }
     }
 
     val all = arrayOf(firebaseModule)

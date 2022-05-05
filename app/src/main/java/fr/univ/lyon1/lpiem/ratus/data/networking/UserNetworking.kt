@@ -10,7 +10,7 @@ import kotlinx.coroutines.tasks.await
 import com.google.firebase.ktx.Firebase
 import fr.univ.lyon1.lpiem.ratus.model.User
 
-class GetUserNetworking {
+class UserNetworking {
 
     companion object {
         private const val TAG = "GetUserNetworking"
