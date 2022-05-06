@@ -1,24 +1,48 @@
 package fr.univ.lyon1.lpiem.ratus.model
 
-enum class RecurrenceType {
+import fr.univ.lyon1.lpiem.ratus.R
+
+enum class RecurrenceType(val text : Int) {
     /** @since Unknown type */
-    UNKNOWN,
+    UNKNOWN(R.string.unknown),
     /** @since None */
-    NONE,
+    NONE(R.string.none),
     /** @since Every day */
-    DAILY,
+    DAILY(R.string.daily),
     /** @since Every week */
-    WEEKLY,
+    WEEKLY(R.string.weekly),
     /** @since Twice a week */
-    BIWEEKLY,
+    BIWEEKLY(R.string.biweekly),
     /** @since Every month */
-    MONTHLY,
+    MONTHLY(R.string.monthly),
     /** @since Every two months */
-    BIMONTHLY,
+    BIMONTHLY(R.string.bimonthly),
     /** @since Every three months */
-    QUARTERLY,
+    QUARTERLY(R.string.quarterly),
     /** @since Every year */
-    ANNUAL,
+    ANNUAL(R.string.annual),
     /** @since Twice a year */
-    BIANNUAL
+    BIANNUAL(R.string.biannual);
+
+
+    fun toFirestoreString() : String {
+        return toString().lowercase()
+    }
+
+    companion object {
+        fun stringToRecurrenceType(type: String): RecurrenceType {
+            when (type) {
+                NONE.toFirestoreString() -> return NONE
+                DAILY.toFirestoreString() -> return DAILY
+                WEEKLY.toFirestoreString() -> return WEEKLY
+                BIWEEKLY.toFirestoreString() -> return BIWEEKLY
+                MONTHLY.toFirestoreString() -> return MONTHLY
+                BIMONTHLY.toFirestoreString() -> return BIMONTHLY
+                QUARTERLY.toFirestoreString() -> return QUARTERLY
+                ANNUAL.toFirestoreString() -> return ANNUAL
+                BIANNUAL.toFirestoreString() -> return BIANNUAL
+            }
+            return UNKNOWN
+        }
+    }
 }

@@ -1,16 +1,13 @@
 package fr.univ.lyon1.lpiem.ratus.data.networking
 
 import android.util.Log
-import com.google.android.gms.tasks.Task
-
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.firestore.ktx.toObject
-import kotlinx.coroutines.tasks.await
 import com.google.firebase.ktx.Firebase
 import fr.univ.lyon1.lpiem.ratus.model.User
+import kotlinx.coroutines.tasks.await
 
-class GetUserNetworking {
+class UserNetworking {
 
     companion object {
         private const val TAG = "GetUserNetworking"
@@ -29,4 +26,17 @@ class GetUserNetworking {
             .await()
 
     }
+
+    suspend fun createUser(uid: String): DocumentSnapshot {
+        db.collection("users")
+            .document(uid)
+            .set(User(uid = uid).toHashMap())
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "getUserWithUID: ", exception)
+            }
+            .await()
+        return getUserWithUID(uid)
+    }
+
+
 }

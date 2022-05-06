@@ -7,6 +7,18 @@ object DomainModules {
         factory {
             GetUserUseCase(get())
         }
+
+        factory {
+            GetUserFundsUseCase(get())
+        }
+
+        factory {
+            GetFundUseCase(get())
+        }
+
+        factory {
+            GetTricksUseCase(get())
+        }
     }
 
     private val budgetModule = module {
