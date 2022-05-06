@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
+import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
 import fr.univ.lyon1.lpiem.ratus.ui.budget.TransactionAdapter
@@ -30,6 +31,11 @@ class HomePageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home_page, container, false)
+
+        (activity as MainActivity).supportActionBar?.apply {
+            title = getString(R.string.home)
+            setDisplayHomeAsUpEnabled(false)
+        }
 
         val budgetCard = view.findViewById<CardView>(R.id.homeBudgetCard)
         val budgetBalance = view.findViewById<TextView>(R.id.homeBudgetBalanceTextView)
@@ -72,8 +78,6 @@ class HomePageFragment : Fragment() {
         }
 
         fundsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        val snapHelper2 = PagerSnapHelper()
-        snapHelper2.attachToRecyclerView(fundsRecyclerView)
 
         viewModel.user.observe(viewLifecycleOwner) { user ->
             budgetCard.setOnClickListener {

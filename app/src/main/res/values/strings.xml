@@ -16,4 +16,6 @@
     <string name="connected">Connected</string>
     <string name="disconnected">Disconnected</string>
     <string name="my_funds">My funds</string>
+    <string name="profile">Profile</string>
+    <string name="home">Home</string>
 </resources>

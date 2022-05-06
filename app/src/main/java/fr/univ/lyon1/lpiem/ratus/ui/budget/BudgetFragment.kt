@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
 import org.koin.android.ext.android.inject
@@ -28,6 +29,11 @@ class BudgetFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_budget, container, false)
+
+        (activity as MainActivity).supportActionBar?.apply {
+            title = getString(R.string.budget)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         val amountTextView = view.findViewById<TextView>(R.id.budgetAmount)
         val addTransactionButton = view.findViewById<Button>(R.id.budgetAddTransactionButton)
