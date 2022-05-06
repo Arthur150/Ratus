@@ -7,15 +7,12 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.HomePageFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.homePage.HomePageFragment"
         android:label="fragment_home_page"
         tools:layout="@layout/fragment_home_page" >
         <action
             android:id="@+id/action_homePageFragment_to_budgetFragment"
             app:destination="@id/budgetFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_fundFragment"
             app:destination="@id/fundFragment" />
@@ -37,30 +34,12 @@
     </fragment>
     <fragment
         android:id="@+id/budgetFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.BudgetFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.budget.BudgetFragment"
         android:label="fragment_budget"
         tools:layout="@layout/fragment_budget" >
         <action
             android:id="@+id/action_budgetFragment_to_transactionInfosFragment"
             app:destination="@id/transactionInfosFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
     </fragment>
     <fragment
         android:id="@+id/fundFragment"

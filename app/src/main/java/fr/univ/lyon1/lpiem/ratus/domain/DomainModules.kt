@@ -21,5 +21,11 @@ object DomainModules {
         }
     }
 
-    val all = arrayOf(firebaseModule)
+    private val budgetModule = module {
+        factory {
+            GetBudgetUseCase(get())
+        }
+    }
+
+    val all = arrayOf(firebaseModule, budgetModule)
 }

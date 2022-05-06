@@ -1,15 +1,22 @@
 package fr.univ.lyon1.lpiem.ratus
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
 import com.google.firebase.auth.FirebaseAuth
 import fr.univ.lyon1.lpiem.ratus.ui.MainActivityViewModel
+import fr.univ.lyon1.lpiem.ratus.ui.profile.ProfileActivity
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,6 +57,26 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         createSignInIntent()
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu,menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            android.R.id.home -> {
+                onBackPressed()
+            }
+            R.id.profileItem -> {
+                val intent = Intent(this,ProfileActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
@@ -63,12 +90,16 @@ class MainActivity : AppCompatActivity() {
                 }
                 viewModel.getUser(user.uid)
             }
-            Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
+            /*
             AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener {
-                    Toast.makeText(this, "Disconnect", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.disconnected), Toast.LENGTH_SHORT).show()
                 }
+            */
+
+
             // ...
         } else {
             // Sign in failed. If response is null the user canceled the
