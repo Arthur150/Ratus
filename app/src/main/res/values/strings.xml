@@ -10,4 +10,10 @@
     <string name="category_icon">category icon</string>
     <string name="my_transactions">My transactions</string>
     <string name="my_budget">My budget</string>
+    <string name="last_transactions">Last transactions :</string>
+    <string name="ratus_tips">Ratus tips</string>
+    <string name="show_all">Show all</string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="my_funds">My funds</string>
 </resources>

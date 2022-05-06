@@ -63,14 +63,15 @@ class MainActivity : AppCompatActivity() {
                 }
                 viewModel.getUser(user.uid)
             }
-            Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
             /*
             AuthUI.getInstance()
                 .signOut(this)
                 .addOnCompleteListener {
-                    Toast.makeText(this, "Disconnect", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.disconnected), Toast.LENGTH_SHORT).show()
                 }
             */
+
 
             // ...
         } else {
