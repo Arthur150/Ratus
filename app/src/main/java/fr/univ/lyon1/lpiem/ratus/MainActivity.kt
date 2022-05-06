@@ -58,14 +58,10 @@ class MainActivity : AppCompatActivity() {
             // Successfully signed in
             val user = FirebaseAuth.getInstance().currentUser
             if (user != null){
-                viewModel.tricks.observe(this) {
-                    if (it != null) {
-                        for (trick in it){
-                            Log.d(TAG, "onSignInResult: ${trick.title}")
-                        }
-                    }
+                viewModel.user.observe(this) {
+                    Log.d(TAG, "onSignInResult: ${it?.uid}")
                 }
-                viewModel.getTricks()
+                viewModel.getUser(user.uid)
             }
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             AuthUI.getInstance()

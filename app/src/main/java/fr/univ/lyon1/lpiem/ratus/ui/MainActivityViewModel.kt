@@ -14,14 +14,14 @@ import fr.univ.lyon1.lpiem.ratus.model.User
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
-    private val useCase: GetTricksUseCase
+    private val useCase: GetUserUseCase
 ) : ViewModel() {
 
     companion object {
         private const val TAG = "MainActivityViewModel"
     }
 
-    /*
+
     // GetUserUseCase
     var user : MutableLiveData<User?> = MutableLiveData()
 
@@ -30,7 +30,7 @@ class MainActivityViewModel(
             user.postValue(useCase(uid))
         }
     }
-    */
+
 
     /*
     //GetUserFundsUseCase
@@ -56,6 +56,8 @@ class MainActivityViewModel(
 
     */
 
+    /*
+    //GetTricksUseCase
     var tricks : MutableLiveData<List<Trick>?> = MutableLiveData()
 
     fun getTricks() {
@@ -63,5 +65,7 @@ class MainActivityViewModel(
             tricks.postValue(useCase())
         }
     }
+
+     */
 
 }

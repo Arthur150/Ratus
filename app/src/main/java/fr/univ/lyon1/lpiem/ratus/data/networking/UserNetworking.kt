@@ -4,6 +4,7 @@ import android.util.Log
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import fr.univ.lyon1.lpiem.ratus.model.User
 import kotlinx.coroutines.tasks.await
 
 class UserNetworking {
@@ -24,6 +25,17 @@ class UserNetworking {
             }
             .await()
 
+    }
+
+    suspend fun createUser(uid: String): DocumentSnapshot {
+        db.collection("users")
+            .document(uid)
+            .set(User(uid = uid).toHashMap())
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "getUserWithUID: ", exception)
+            }
+            .await()
+        return getUserWithUID(uid)
     }
 
 
