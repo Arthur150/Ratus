@@ -2,6 +2,7 @@ package fr.univ.lyon1.lpiem.ratus.data.datasource
 
 import fr.univ.lyon1.lpiem.ratus.core.exception.UserNotAlreadyRegisterException
 import fr.univ.lyon1.lpiem.ratus.data.networking.UserNetworking
+import fr.univ.lyon1.lpiem.ratus.model.Transaction
 import fr.univ.lyon1.lpiem.ratus.model.User
 import java.lang.IllegalStateException
 
@@ -36,6 +37,24 @@ class UserRemoteDataSourceImpl(
                 Result.success(user)
             }
             else {
+                Result.failure(IllegalStateException())
+            }
+        }
+        catch (t : Throwable) {
+            Result.failure(t)
+        }
+    }
+
+    override suspend fun addTransaction(uid: String, user: User): Result<User> {
+        return try {
+            val document = networking.addTransaction(uid, user)
+            val user = document.toObject(User::class.java)
+
+            if (user != null){
+                Result.success(user)
+            }
+            else {
+
                 Result.failure(IllegalStateException())
             }
         }

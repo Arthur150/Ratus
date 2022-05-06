@@ -3,18 +3,13 @@ package fr.univ.lyon1.lpiem.ratus.ui
 import android.util.Log
 import androidx.lifecycle.*
 import fr.univ.lyon1.lpiem.ratus.data.datasource.UserRemoteDataSource
-import fr.univ.lyon1.lpiem.ratus.domain.GetFundUseCase
-import fr.univ.lyon1.lpiem.ratus.domain.GetTricksUseCase
-import fr.univ.lyon1.lpiem.ratus.domain.GetUserFundsUseCase
-import fr.univ.lyon1.lpiem.ratus.domain.GetUserUseCase
-import fr.univ.lyon1.lpiem.ratus.model.Fund
-import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
-import fr.univ.lyon1.lpiem.ratus.model.Trick
-import fr.univ.lyon1.lpiem.ratus.model.User
+import fr.univ.lyon1.lpiem.ratus.domain.*
+import fr.univ.lyon1.lpiem.ratus.model.*
 import kotlinx.coroutines.launch
 
 class MainActivityViewModel(
-    private val useCase: GetUserUseCase
+    private val useCase: GetUserUseCase,
+    private val addTransactionUseCase: AddTransactionUseCase
 ) : ViewModel() {
 
     companion object {
@@ -28,6 +23,15 @@ class MainActivityViewModel(
     fun getUser(uid : String) {
         viewModelScope.launch {
             user.postValue(useCase(uid))
+        }
+    }
+
+    fun addTransaction(uid: String){
+        viewModelScope.launch {
+            user.postValue(addTransactionUseCase(
+                uid,
+                Transaction(title = "Creation depuis l'app")
+            ))
         }
     }
 

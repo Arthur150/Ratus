@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.user.observe(this) {
                     Log.d(TAG, "onSignInResult: ${it?.uid}")
                 }
-                viewModel.getUser(user.uid)
+                //viewModel.addTransaction(user.uid)
             }
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             AuthUI.getInstance()
