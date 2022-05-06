@@ -14,7 +14,7 @@ class TrickNetworking {
 
     private val db = Firebase.firestore
 
-    suspend fun getTricks() : QuerySnapshot? {
+    suspend fun getTricks(): QuerySnapshot? {
 
         return db.collection("tricks")
             .get()

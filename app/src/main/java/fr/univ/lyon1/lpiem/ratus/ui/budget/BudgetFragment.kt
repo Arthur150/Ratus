@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -42,7 +41,8 @@ class BudgetFragment : Fragment() {
         transactionRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         addTransactionButton.setOnClickListener {
-            this.findNavController().navigate(R.id.action_budgetFragment_to_transactionInfosFragment)
+            this.findNavController()
+                .navigate(R.id.action_budgetFragment_to_transactionInfosFragment)
         }
 
         val numberFormat = NumberFormat.getInstance()
@@ -51,12 +51,13 @@ class BudgetFragment : Fragment() {
 
         viewModel.budget.observe(viewLifecycleOwner) { budget ->
             amountTextView.apply {
-                setTextColor(tools.getCurrencyTextColor(requireContext(),budget.balance))
+                setTextColor(tools.getCurrencyTextColor(requireContext(), budget.balance))
                 text = tools.formatCurrency(budget.balance)
             }
-            transactionRecyclerView.adapter = TransactionAdapter(budget.transactions.sortedByDescending { transaction ->
-                transaction.date
-            })
+            transactionRecyclerView.adapter =
+                TransactionAdapter(budget.transactions.sortedByDescending { transaction ->
+                    transaction.date
+                })
         }
 
         return view

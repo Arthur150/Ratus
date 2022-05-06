@@ -9,7 +9,7 @@ class TrickRemoteDataSourceImpl(
     override suspend fun getTricks(): Result<List<Trick>> {
         return try {
             val query = networking.getTricks() ?: return Result.success(arrayListOf())
-            val tricks : ArrayList<Trick> = ArrayList()
+            val tricks: ArrayList<Trick> = ArrayList()
             for (document in query.documents) {
                 document.toObject(Trick::class.java)?.let {
                     tricks.add(it)
@@ -17,8 +17,7 @@ class TrickRemoteDataSourceImpl(
             }
 
             Result.success(tricks)
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }

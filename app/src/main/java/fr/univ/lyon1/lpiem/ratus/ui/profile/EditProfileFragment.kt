@@ -1,10 +1,10 @@
 package fr.univ.lyon1.lpiem.ratus.ui.profile
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import fr.univ.lyon1.lpiem.ratus.R
 
 class EditProfileFragment : Fragment() {

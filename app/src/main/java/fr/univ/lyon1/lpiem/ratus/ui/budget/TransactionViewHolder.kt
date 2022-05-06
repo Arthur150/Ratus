@@ -2,16 +2,14 @@ package fr.univ.lyon1.lpiem.ratus.ui.budget
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.recyclerview.widget.RecyclerView
-import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.databinding.ViewHolderTransactionBinding
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
+import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
-import org.koin.java.KoinJavaComponent.get
 import org.koin.java.KoinJavaComponent.inject
 import java.text.DateFormat
-import java.text.NumberFormat
 
 class TransactionViewHolder private constructor(
     private val binding: ViewHolderTransactionBinding
@@ -34,11 +32,22 @@ class TransactionViewHolder private constructor(
     fun bind(transaction: Transaction) {
         val dateFormat = DateFormat.getDateInstance()
 
-        with(binding){
-            transactionAmount.setTextColor(tools.getCurrencyTextColor(root.context,transaction.amount))
+        with(binding) {
+            transactionAmount.setTextColor(
+                tools.getCurrencyTextColor(
+                    root.context,
+                    transaction.amount
+                )
+            )
             transactionAmount.text = tools.formatCurrency(transaction.amount)
             transactionDate.text = transaction.date?.toDate()?.let { dateFormat.format(it) }
             transationName.text = transaction.title
+            transactionCategoryImageView.setImageDrawable(
+                getDrawable(
+                    root.context,
+                    TransactionCategory.stringToTransactionCategory(transaction.category).icon
+                )
+            )
         }
     }
 }

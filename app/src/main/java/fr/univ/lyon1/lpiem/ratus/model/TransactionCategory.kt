@@ -2,37 +2,50 @@ package fr.univ.lyon1.lpiem.ratus.model
 
 import fr.univ.lyon1.lpiem.ratus.R
 
-enum class TransactionCategory(val icon : Int, val text : Int) {
+enum class TransactionCategory(val icon: Int, val text: Int) {
     /** @since Courses */
     SHOPPING(R.drawable.shopping_basket, R.string.shopping),
+
     /** @since Vehicle */
     VEHICLE(R.drawable.directions_car, R.string.vehicle),
+
     /** @since Sport */
     SPORT(R.drawable.sports_soccer, R.string.sport),
+
     /** @since Culture */
     CULTURE(R.drawable.auto_stories, R.string.culture),
+
     /** @since Entertainment */
     ENTERTAINMENT(R.drawable.movie, R.string.entertaiment),
+
     /** @since Travel */
     TRAVEL(R.drawable.flight_takeoff, R.string.travel),
+
     /** @since Savings */
     SAVINGS(R.drawable.savings, R.string.savings),
+
     /** @since Taxes */
     TAXES(R.drawable.account_balance, R.string.taxes),
+
     /** @since Misc */
     MISC(R.drawable.inventory_2, R.string.misc),
+
     /** @since Gift */
     GIFT(R.drawable.redeem, R.string.gift),
+
     /** @since Refund */
     REFUND(R.drawable.loyalty, R.string.refund),
+
     /** @since Pay */
     PAY(R.drawable.payments, R.string.pay),
+
     /** @since Help */
     HELP(R.drawable.volunteer_activism, R.string.help),
+
     /** @since Health */
     HEALTH(R.drawable.medical_services, R.string.health);
 
-    fun toFirestoreString() : String {
+    fun toFirestoreString(): String {
         return toString().lowercase()
     }
 

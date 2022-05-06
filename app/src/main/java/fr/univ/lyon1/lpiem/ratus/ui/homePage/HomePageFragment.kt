@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
@@ -23,7 +22,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomePageFragment : Fragment() {
 
-    private val viewModel by viewModel<HomePageViewModel>()
+    val viewModel by viewModel<HomePageViewModel>()
     private val tools by inject<Tools>()
 
     override fun onCreateView(
@@ -65,7 +64,8 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_trickListFragment)
         }
 
-        tipsRecyclerView.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.HORIZONTAL,false)
+        tipsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(tipsRecyclerView)
 
@@ -92,7 +92,7 @@ class HomePageFragment : Fragment() {
             }
             transactionTextViews.forEachIndexed { index, textView ->
                 textView.apply {
-                    if (index < sortedTransaction.size){
+                    if (index < sortedTransaction.size) {
                         sortedTransaction[index].let {
                             setTextColor(
                                 tools.getCurrencyTextColor(
@@ -110,7 +110,8 @@ class HomePageFragment : Fragment() {
             tipsRecyclerView.adapter = TransactionAdapter(sortedTransaction)
 
             //TODO change transactions to funds
-            fundsRecyclerView.adapter = TransactionAdapter(sortedTransaction.plus(sortedTransaction))
+            fundsRecyclerView.adapter =
+                TransactionAdapter(sortedTransaction.plus(sortedTransaction))
         }
 
         return view

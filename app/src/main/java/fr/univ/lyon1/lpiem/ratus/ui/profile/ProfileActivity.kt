@@ -1,7 +1,7 @@
 package fr.univ.lyon1.lpiem.ratus.ui.profile
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import fr.univ.lyon1.lpiem.ratus.R
 
 class ProfileActivity : AppCompatActivity() {
