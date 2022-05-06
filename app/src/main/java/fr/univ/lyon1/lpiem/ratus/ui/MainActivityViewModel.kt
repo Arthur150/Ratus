@@ -1,5 +1,6 @@
 package fr.univ.lyon1.lpiem.ratus.ui
 
+import android.util.Log
 import androidx.lifecycle.*
 import fr.univ.lyon1.lpiem.ratus.data.datasource.UserRemoteDataSource
 import fr.univ.lyon1.lpiem.ratus.domain.GetFundUseCase
@@ -7,6 +8,7 @@ import fr.univ.lyon1.lpiem.ratus.domain.GetTricksUseCase
 import fr.univ.lyon1.lpiem.ratus.domain.GetUserFundsUseCase
 import fr.univ.lyon1.lpiem.ratus.domain.GetUserUseCase
 import fr.univ.lyon1.lpiem.ratus.model.Fund
+import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
 import fr.univ.lyon1.lpiem.ratus.model.Trick
 import fr.univ.lyon1.lpiem.ratus.model.User
 import kotlinx.coroutines.launch
@@ -14,6 +16,10 @@ import kotlinx.coroutines.launch
 class MainActivityViewModel(
     private val useCase: GetTricksUseCase
 ) : ViewModel() {
+
+    companion object {
+        private const val TAG = "MainActivityViewModel"
+    }
 
     /*
     // GetUserUseCase
