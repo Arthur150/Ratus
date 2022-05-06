@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.R
+import fr.univ.lyon1.lpiem.ratus.ui.Tools
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.NumberFormat
 import java.util.*
@@ -18,6 +21,7 @@ import java.util.*
 class BudgetFragment : Fragment() {
 
     private val viewModel by viewModel<BudgetViewModel>()
+    private val tools by inject<Tools>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,7 +44,10 @@ class BudgetFragment : Fragment() {
         numberFormat.currency = Currency.getInstance("EUR")
 
         viewModel.budget.observe(viewLifecycleOwner) { budget ->
-            amountTextView.text = "${numberFormat.format(budget.balance)} ${numberFormat.currency.symbol}"
+            amountTextView.apply {
+                setTextColor(tools.getCurrencyTextColor(requireContext(),budget.balance))
+                text = tools.formatCurrency(budget.balance)
+            }
             transactionRecyclerView.adapter = TransactionAdapter(budget.transactions.sortedByDescending { transaction ->
                 transaction.date
             })

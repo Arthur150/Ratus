@@ -1,9 +1,9 @@
 <resources>
-    <color name="md_theme_light_primary">#005FAC</color>
+    <color name="md_theme_light_primary">#009FE3</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
     <color name="md_theme_light_primaryContainer">#D3E4FF</color>
     <color name="md_theme_light_onPrimaryContainer">#001C3A</color>
-    <color name="md_theme_light_secondary">#914D00</color>
+    <color name="md_theme_light_secondary">#F88B0B</color>
     <color name="md_theme_light_onSecondary">#FFFFFF</color>
     <color name="md_theme_light_secondaryContainer">#FFDCC0</color>
     <color name="md_theme_light_onSecondaryContainer">#2F1500</color>
@@ -55,4 +55,6 @@
     <color name="md_theme_dark_inversePrimary">#005FAC</color>
     <color name="md_theme_dark_shadow">#000000</color>
     <color name="md_theme_dark_primaryInverse">#005FAC</color>
+    <color name="red">#E40C0C</color>
+    <color name="green">#23AF2E</color>
 </resources>
