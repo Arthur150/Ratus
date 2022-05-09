@@ -8,8 +8,9 @@ class FundRemoteDataSourceImpl(
 ) : FundRemoteDataSource {
     override suspend fun getFundsWithContributorUID(uid: String): Result<List<Fund>> {
         return try {
-            val query = networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
-            val funds : ArrayList<Fund> = ArrayList()
+            val query =
+                networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
+            val funds: ArrayList<Fund> = ArrayList()
             for (document in query.documents) {
                 document.toObject(Fund::class.java)?.let {
                     funds.add(it)
@@ -17,8 +18,7 @@ class FundRemoteDataSourceImpl(
             }
 
             Result.success(funds)
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }
@@ -28,14 +28,12 @@ class FundRemoteDataSourceImpl(
             val document = networking.getFundWithID(id)
             val fund = document?.toObject(Fund::class.java)
 
-            if (fund != null){
+            if (fund != null) {
                 Result.success(fund)
-            }
-            else {
+            } else {
                 Result.failure(IllegalStateException())
             }
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }

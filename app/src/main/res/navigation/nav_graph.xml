@@ -7,15 +7,12 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.HomePageFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.homePage.HomePageFragment"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" >
+        tools:layout="@layout/fragment_home_page">
         <action
             android:id="@+id/action_homePageFragment_to_budgetFragment"
             app:destination="@id/budgetFragment" />
-        <action
-            android:id="@+id/action_homePageFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_homePageFragment_to_fundFragment"
             app:destination="@id/fundFragment" />
@@ -37,36 +34,18 @@
     </fragment>
     <fragment
         android:id="@+id/budgetFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.BudgetFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.budget.BudgetFragment"
         android:label="fragment_budget"
-        tools:layout="@layout/fragment_budget" >
+        tools:layout="@layout/fragment_budget">
         <action
             android:id="@+id/action_budgetFragment_to_transactionInfosFragment"
             app:destination="@id/transactionInfosFragment" />
     </fragment>
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" >
-        <action
-            android:id="@+id/action_profileFragment_to_editProfileFragment"
-            app:destination="@id/editProfileFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editProfileFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.EditProfileFragment"
-        android:label="fragment_edit_profile"
-        tools:layout="@layout/fragment_edit_profile" >
-        <action
-            android:id="@+id/action_editProfileFragment_to_profileFragment"
-            app:destination="@id/profileFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/fundFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.FundFragment"
         android:label="fragment_fund"
-        tools:layout="@layout/fragment_fund" >
+        tools:layout="@layout/fragment_fund">
         <action
             android:id="@+id/action_fundFragment_to_editFundFragment"
             app:destination="@id/editFundFragment" />
@@ -75,7 +54,7 @@
         android:id="@+id/editFundFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.EditFundFragment"
         android:label="fragment_edit_fund"
-        tools:layout="@layout/fragment_edit_fund" >
+        tools:layout="@layout/fragment_edit_fund">
         <action
             android:id="@+id/action_editFundFragment_to_fundFragment"
             app:destination="@id/fundFragment" />
@@ -84,7 +63,7 @@
         android:id="@+id/fundListFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.FundListFragment"
         android:label="fragment_fund_list"
-        tools:layout="@layout/fragment_fund_list" >
+        tools:layout="@layout/fragment_fund_list">
         <action
             android:id="@+id/action_fundListFragment_to_fundFragment"
             app:destination="@id/fundFragment" />
@@ -93,7 +72,7 @@
         android:id="@+id/trickListFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TrickListFragment"
         android:label="fragment_trick_list"
-        tools:layout="@layout/fragment_trick_list" >
+        tools:layout="@layout/fragment_trick_list">
         <action
             android:id="@+id/action_trickListFragment_to_trickDetailFragment"
             app:destination="@id/trickDetailFragment" />
@@ -107,7 +86,7 @@
         android:id="@+id/transactionInfosFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TransactionInfosFragment"
         android:label="fragment_transaction_infos"
-        tools:layout="@layout/fragment_transaction_infos" >
+        tools:layout="@layout/fragment_transaction_infos">
         <action
             android:id="@+id/action_transactionInfosFragment_to_transactionRecurrenceFragment"
             app:destination="@id/transactionRecurrenceFragment" />
@@ -116,7 +95,7 @@
         android:id="@+id/transactionNameFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TransactionNameFragment"
         android:label="fragment_transaction_name"
-        tools:layout="@layout/fragment_transaction_name" >
+        tools:layout="@layout/fragment_transaction_name">
         <action
             android:id="@+id/action_transactionNameFragment_to_transactionSummaryFragment"
             app:destination="@id/transactionSummaryFragment" />
@@ -125,7 +104,7 @@
         android:id="@+id/transactionRecurrenceFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TransactionRecurrenceFragment"
         android:label="fragment_transaction_recurrence"
-        tools:layout="@layout/fragment_transaction_recurrence" >
+        tools:layout="@layout/fragment_transaction_recurrence">
         <action
             android:id="@+id/action_transactionRecurrenceFragment_to_transactionNameFragment"
             app:destination="@id/transactionNameFragment" />
@@ -134,7 +113,7 @@
         android:id="@+id/transactionSummaryFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TransactionSummaryFragment"
         android:label="fragment_transaction_summary"
-        tools:layout="@layout/fragment_transaction_summary" >
+        tools:layout="@layout/fragment_transaction_summary">
         <action
             android:id="@+id/action_transactionSummaryFragment_to_budgetFragment"
             app:destination="@id/budgetFragment" />

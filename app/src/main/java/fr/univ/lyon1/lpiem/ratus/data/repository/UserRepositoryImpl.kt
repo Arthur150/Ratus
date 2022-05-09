@@ -7,12 +7,11 @@ import fr.univ.lyon1.lpiem.ratus.model.User
 
 class UserRepositoryImpl(
     private val dataSource: UserRemoteDataSource
-) : UserRepository{
+) : UserRepository {
     override suspend fun getUserWithUID(uid: String): User {
         return try {
             dataSource.getUserWithUID(uid).getOrThrow()
-        }
-        catch (ex : UserNotAlreadyRegisterException) {
+        } catch (ex: UserNotAlreadyRegisterException) {
             dataSource.createUser(uid).getOrThrow()
         }
     }

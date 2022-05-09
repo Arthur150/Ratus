@@ -11,11 +11,10 @@ class UserRemoteDataSourceImpl(
     private val transactionNetworking: TransactionNetworking
 ) : UserRemoteDataSource {
 
-    override suspend fun getUserWithUID(uid: String) : Result<User> {
+    override suspend fun getUserWithUID(uid: String): Result<User> {
         return try {
             val document = networking.getUserWithUID(uid)
             val firebaseUser = document.toObject(FirebaseUser::class.java)
-
             if (firebaseUser != null){
                 val transactionsList = ArrayList<Transaction>()
                 for (transaction in firebaseUser.transactions){
@@ -31,8 +30,7 @@ class UserRemoteDataSourceImpl(
 
                 Result.failure(UserNotAlreadyRegisterException())
             }
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }
@@ -80,11 +78,9 @@ class UserRemoteDataSourceImpl(
                 Result.success(user.toUser(transactionsList))
             }
             else {
-
                 Result.failure(IllegalStateException())
             }
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }
