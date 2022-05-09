@@ -54,6 +54,7 @@ class BudgetFragment : Fragment() {
                 setTextColor(tools.getCurrencyTextColor(requireContext(), user.balance))
                 text = tools.formatCurrency(user.balance)
             }
+
             transactionRecyclerView.adapter =
                 TransactionAdapter(user.transactions.sortedByDescending { transaction ->
                     transaction.date

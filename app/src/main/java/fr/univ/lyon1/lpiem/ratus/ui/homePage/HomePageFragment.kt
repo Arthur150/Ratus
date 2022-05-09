@@ -64,10 +64,14 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_trickListFragment)
         }
 
-        tipsRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        tipsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(tipsRecyclerView)
+
+        viewModel.tricks.observe(viewLifecycleOwner) { trickList ->
+            tipsRecyclerView.adapter = TrickAdapter(trickList)
+        }
+
 
         showAllFunds.setOnClickListener {
             findNavController().navigate(R.id.action_homePageFragment_to_fundListFragment)
@@ -106,14 +110,16 @@ class HomePageFragment : Fragment() {
                 }
             }
 
-            //TODO change transactions to tricks
-            tipsRecyclerView.adapter = TransactionAdapter(sortedTransaction)
-
             //TODO change transactions to funds
             fundsRecyclerView.adapter =
                 TransactionAdapter(sortedTransaction.plus(sortedTransaction))
-        }
 
+        }
+/*
+
+
+
+ */
         return view
     }
 }

@@ -22,12 +22,13 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:id="@+id/transationName"
+            android:id="@+id/transactionName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
+            android:fontFamily="@font/inter"
             android:text="@string/name"
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/transactionAmount"
@@ -41,18 +42,20 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/inter"
             android:text="@string/date"
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/transactionAmount"
             app:layout_constraintStart_toEndOf="@+id/transactionCategoryImageView"
-            app:layout_constraintTop_toBottomOf="@+id/transationName" />
+            app:layout_constraintTop_toBottomOf="@+id/transactionName" />
 
         <TextView
             android:id="@+id/transactionAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/inter"
             android:text="@string/_0_00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

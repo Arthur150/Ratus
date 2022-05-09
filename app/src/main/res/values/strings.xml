@@ -42,4 +42,6 @@
     <string name="quarterly">Quarterly</string>
     <string name="annual">Annual</string>
     <string name="biannual">Biannual</string>
+    <string name="tips_title">Discover the Ratus tips to save even more!</string>
+    <string name="tips">Tips</string>
 </resources>

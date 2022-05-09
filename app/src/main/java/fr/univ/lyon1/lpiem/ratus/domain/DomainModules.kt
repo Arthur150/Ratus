@@ -23,11 +23,11 @@ object DomainModules {
         factory {
             AddTransactionUseCase(get())
         }
+
+        factory {
+            GetRandomTricksUseCase(get())
+        }
     }
 
-    private val budgetModule = module {
-
-    }
-
-    val all = arrayOf(firebaseModule, budgetModule)
+    val all = arrayOf(firebaseModule)
 }

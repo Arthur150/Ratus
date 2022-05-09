@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/trickListFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TrickListFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.trick_list.TrickListFragment"
         android:label="fragment_trick_list"
         tools:layout="@layout/fragment_trick_list">
         <action
