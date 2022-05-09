@@ -55,14 +55,7 @@ class LoginActivity : AppCompatActivity() {
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            /*
-            AuthUI.getInstance()
-                .signOut(this)
-                .addOnCompleteListener {
-                    Toast.makeText(this, getString(R.string.disconnected), Toast.LENGTH_SHORT).show()
-                }
-            */
-
+            finish()
 
             // ...
         } else {

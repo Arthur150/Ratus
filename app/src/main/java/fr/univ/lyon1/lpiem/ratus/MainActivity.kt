@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_48px)
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_24px)
         setSupportActionBar(toolbar)
     }
 
