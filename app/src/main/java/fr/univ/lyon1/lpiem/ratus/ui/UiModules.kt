@@ -8,9 +8,6 @@ import org.koin.dsl.module
 object UiModules {
     private val viewModelModule = module {
         viewModel {
-            MainActivityViewModel(get())
-        }
-        viewModel {
             HomePageViewModel(get())
         }
         viewModel {

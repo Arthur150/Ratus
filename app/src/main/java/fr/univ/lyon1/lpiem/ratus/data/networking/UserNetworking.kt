@@ -15,7 +15,7 @@ class UserNetworking {
 
     private val db = Firebase.firestore
 
-    suspend fun getUserWithUID(uid : String): DocumentSnapshot {
+    suspend fun getUserWithUID(uid: String): DocumentSnapshot {
 
         return db.collection("users")
             .document(uid)

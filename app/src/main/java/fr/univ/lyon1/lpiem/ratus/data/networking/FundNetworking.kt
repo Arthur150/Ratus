@@ -15,7 +15,7 @@ class FundNetworking {
 
     private val db = Firebase.firestore
 
-    suspend fun getFundsWithContributorUID(uid : String): QuerySnapshot? {
+    suspend fun getFundsWithContributorUID(uid: String): QuerySnapshot? {
 
         return db.collection("funds")
             .whereArrayContains("contributors", uid)
@@ -27,7 +27,7 @@ class FundNetworking {
 
     }
 
-    suspend fun getFundWithID(id : String): DocumentSnapshot? {
+    suspend fun getFundWithID(id: String): DocumentSnapshot? {
 
         return db.collection("funds")
             .document(id)

@@ -12,7 +12,7 @@ class HomePageViewModel(
 ) : ViewModel() {
     val user: LiveData<User> = liveData {
         val user = FirebaseAuth.getInstance().currentUser
-        if (user != null){
+        if (user != null) {
             emit(getUserUseCase.invoke(user.uid))
         }
     }
