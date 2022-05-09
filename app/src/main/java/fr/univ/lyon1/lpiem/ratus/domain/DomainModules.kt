@@ -19,12 +19,14 @@ object DomainModules {
         factory {
             GetTricksUseCase(get())
         }
+
+        factory {
+            AddTransactionUseCase(get())
+        }
     }
 
     private val budgetModule = module {
-        factory {
-            GetBudgetUseCase(get())
-        }
+
     }
 
     val all = arrayOf(firebaseModule, budgetModule)

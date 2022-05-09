@@ -49,13 +49,13 @@ class BudgetFragment : Fragment() {
         numberFormat.maximumFractionDigits = 2
         numberFormat.currency = Currency.getInstance("EUR")
 
-        viewModel.budget.observe(viewLifecycleOwner) { budget ->
+        viewModel.user.observe(viewLifecycleOwner) { user ->
             amountTextView.apply {
-                setTextColor(tools.getCurrencyTextColor(requireContext(), budget.balance))
-                text = tools.formatCurrency(budget.balance)
+                setTextColor(tools.getCurrencyTextColor(requireContext(), user.balance))
+                text = tools.formatCurrency(user.balance)
             }
             transactionRecyclerView.adapter =
-                TransactionAdapter(budget.transactions.sortedByDescending { transaction ->
+                TransactionAdapter(user.transactions.sortedByDescending { transaction ->
                     transaction.date
                 })
         }

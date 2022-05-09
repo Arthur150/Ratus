@@ -84,10 +84,10 @@ class HomePageFragment : Fragment() {
                 findNavController().navigate(R.id.action_homePageFragment_to_budgetFragment)
             }
             budgetBalance.apply {
-                setTextColor(tools.getCurrencyTextColor(requireContext(), user.budget.balance))
-                text = tools.formatCurrency(user.budget.balance)
+                setTextColor(tools.getCurrencyTextColor(requireContext(), user.balance))
+                text = tools.formatCurrency(user.balance)
             }
-            val sortedTransaction = user.budget.transactions.sortedByDescending { transaction ->
+            val sortedTransaction = user.transactions.sortedByDescending { transaction ->
                 transaction.date
             }
             transactionTextViews.forEachIndexed { index, textView ->
