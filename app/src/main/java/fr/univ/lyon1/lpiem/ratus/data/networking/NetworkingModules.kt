@@ -16,6 +16,10 @@ object NetworkingModules {
         single {
             TrickNetworking()
         }
+
+        single {
+            TransactionNetworking()
+        }
     }
 
     val all = arrayOf(firebaseModule)

@@ -4,24 +4,24 @@ import java.util.ArrayList
 
 data class User(
     val uid : String = "",
-    val budget : Budget = Budget()
+    val balance : Double = 0.0,
+    val transactions : List<Transaction> = arrayListOf(),
 ) {
     fun toHashMap(): HashMap<String, Any> {
         return hashMapOf(
             "uid" to uid,
-            "budget" to budget.toHashMap()
+            "balance" to balance,
+            "transactions" to transactions
         )
     }
 
     fun addTransaction(transaction: Transaction): User {
-        val transactions = ArrayList<Transaction>(budget.transactions)
+        val transactions = ArrayList<Transaction>(transactions)
         transactions.add(transaction)
         return User(
             uid,
-            Budget(
-                budget.balance,
-                transactions
-            )
+            balance,
+            transactions
         )
     }
 }

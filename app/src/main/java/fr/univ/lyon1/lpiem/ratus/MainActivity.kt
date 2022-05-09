@@ -60,8 +60,11 @@ class MainActivity : AppCompatActivity() {
             if (user != null){
                 viewModel.user.observe(this) {
                     Log.d(TAG, "onSignInResult: ${it?.uid}")
+                    for (transaction in it?.transactions ?: arrayListOf()){
+                        Log.d(TAG, "onSignInResult: ${transaction.amount}")
+                    }
                 }
-                //viewModel.addTransaction(user.uid)
+                viewModel.addTransaction(user.uid)
             }
             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
             AuthUI.getInstance()

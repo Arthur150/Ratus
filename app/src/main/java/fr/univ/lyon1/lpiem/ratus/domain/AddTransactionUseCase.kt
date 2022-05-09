@@ -9,7 +9,6 @@ class AddTransactionUseCase (
 ) {
     suspend operator fun invoke(uid : String, transaction: Transaction) : User {
         val origin = userRepository.getUserWithUID(uid)
-        val update = origin.addTransaction(transaction)
-        return userRepository.addTransaction(uid, update)
+        return userRepository.addTransaction(uid, transaction, (origin.balance + transaction.amount))
     }
 }
