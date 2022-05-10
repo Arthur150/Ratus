@@ -143,4 +143,6 @@ class HomePageFragment : Fragment() {
 
         return view
     }
+
+
 }
