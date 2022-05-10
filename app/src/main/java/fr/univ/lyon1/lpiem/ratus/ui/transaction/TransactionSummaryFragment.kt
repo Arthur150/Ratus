@@ -1,10 +1,11 @@
-package fr.univ.lyon1.lpiem.ratus
+package fr.univ.lyon1.lpiem.ratus.ui.transaction
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import fr.univ.lyon1.lpiem.ratus.R
 
 class TransactionSummaryFragment : Fragment() {
 

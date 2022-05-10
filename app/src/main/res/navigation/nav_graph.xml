@@ -84,7 +84,7 @@
         tools:layout="@layout/fragment_trick_detail" />
     <fragment
         android:id="@+id/transactionInfosFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionInfosFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionInfosFragment"
         android:label="fragment_transaction_infos"
         tools:layout="@layout/fragment_transaction_infos">
         <action
@@ -93,7 +93,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionNameFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionNameFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionNameFragment"
         android:label="fragment_transaction_name"
         tools:layout="@layout/fragment_transaction_name">
         <action
@@ -102,16 +102,23 @@
     </fragment>
     <fragment
         android:id="@+id/transactionRecurrenceFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionRecurrenceFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionRecurrenceFragment"
         android:label="fragment_transaction_recurrence"
         tools:layout="@layout/fragment_transaction_recurrence">
         <action
             android:id="@+id/action_transactionRecurrenceFragment_to_transactionNameFragment"
             app:destination="@id/transactionNameFragment" />
+        <argument
+            android:name="category"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.TransactionCategory"
+            android:defaultValue="SHOPPING" />
+        <argument
+            android:name="amount"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/transactionSummaryFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionSummaryFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionSummaryFragment"
         android:label="fragment_transaction_summary"
         tools:layout="@layout/fragment_transaction_summary">
         <action

@@ -42,4 +42,13 @@
     <string name="quarterly">Quarterly</string>
     <string name="annual">Annual</string>
     <string name="biannual">Biannual</string>
+    <string name="what_is_the_transaction_s_type">What is the transaction\'s type ?</string>
+    <string name="new_transaction">New transaction</string>
+    <string name="in">In</string>
+    <string name="out">Out</string>
+    <string name="what_is_the_transaction_s_amount">What is the transaction\'s amount ?</string>
+    <string name="what_is_the_transaction_s_category">What is the transaction\'s category ?</string>
+    <string name="next">Next</string>
+    <string name="_10_00">10.00 €</string>
+    <string name="please_complete_all_fields">Please complete all the fields</string>
 </resources>
