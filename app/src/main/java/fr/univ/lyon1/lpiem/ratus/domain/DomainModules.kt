@@ -27,6 +27,10 @@ object DomainModules {
         factory {
             GetRandomTricksUseCase(get())
         }
+
+        factory {
+            GetTrickUseCase(get())
+        }
     }
 
     val all = arrayOf(firebaseModule)

@@ -9,4 +9,8 @@ class TrickRepositoryImpl(
     override suspend fun getTricks(): List<Trick> {
         return dataSource.getTricks().getOrThrow()
     }
+
+    override suspend fun getTrick(id: String): Trick {
+        return dataSource.getTrick(id).getOrThrow()
+    }
 }

@@ -38,6 +38,7 @@ class HomePageFragment : Fragment() {
             title = getString(R.string.home)
             setDisplayHomeAsUpEnabled(false)
         }
+        viewModel.getUserDetails()
 
         val budgetCard = view.findViewById<CardView>(R.id.homeBudgetCard)
         val budgetBalance = view.findViewById<TextView>(R.id.homeBudgetBalanceTextView)
@@ -144,5 +145,9 @@ class HomePageFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUserDetails()
+    }
 
 }

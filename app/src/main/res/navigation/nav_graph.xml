@@ -127,9 +127,14 @@
     </fragment>
     <fragment
         android:id="@+id/trickDetailFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TrickDetailFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.trick_details.TrickDetailFragment"
         android:label="fragment_trick_detail"
-        tools:layout="@layout/fragment_trick_detail" />
+        tools:layout="@layout/fragment_trick_detail" >
+        <argument
+            android:name="trickId"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
     <fragment
         android:id="@+id/transactionInfosFragment"
         android:name="fr.univ.lyon1.lpiem.ratus.TransactionInfosFragment"

@@ -5,11 +5,14 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.R
 import fr.univ.lyon1.lpiem.ratus.databinding.ViewHolderTrickBinding
 import fr.univ.lyon1.lpiem.ratus.model.Trick
+import fr.univ.lyon1.lpiem.ratus.R as RatusR
 
 
 class TrickViewHolder private constructor(
@@ -31,6 +34,10 @@ class TrickViewHolder private constructor(
     fun bind(trick: Trick) {
 
         with(binding){
+            root.setOnClickListener { view ->
+                val bundle = bundleOf("trickId" to trick.id)
+                view.findNavController().navigate(RatusR.id.action_homePageFragment_to_trickDetailFragment, bundle)
+            }
             val theme: Theme = root.context.theme
             val cardColor = TypedValue()
             val textColor = TypedValue()
