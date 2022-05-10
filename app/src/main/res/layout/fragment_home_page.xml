@@ -51,6 +51,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ir.mahozad.android.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                app:gap="0dp"
+                app:gradientType="sweep"
+                app:holeRatio="0"
+                app:labelType="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/transactionTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:overlayRatio="0" />
+
             <TextView
                 android:id="@+id/homeBudgetBalanceTextView"
                 android:layout_width="wrap_content"
@@ -85,8 +104,10 @@
                 android:fontFamily="@font/inter"
                 android:text="@string/_0_00"
                 android:textSize="11sp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/transactionTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/transactionTextView"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/homeTransaction2"
@@ -97,8 +118,10 @@
                 android:fontFamily="@font/inter"
                 android:text="@string/_0_00"
                 android:textSize="11sp"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/homeTransaction1" />
+                app:layout_constraintTop_toBottomOf="@+id/homeTransaction1"
+                tools:visibility="visible" />
 
             <TextView
                 android:id="@+id/homeTransaction3"
@@ -110,9 +133,11 @@
                 android:fontFamily="@font/inter"
                 android:text="@string/_0_00"
                 android:textSize="11sp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/homeTransaction2" />
+                app:layout_constraintTop_toBottomOf="@+id/homeTransaction2"
+                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

@@ -30,33 +30,25 @@ class TrickViewHolder private constructor(
 
     fun bind(trick: Trick) {
 
-
         with(binding){
             val theme: Theme = root.context.theme
             val cardColor = TypedValue()
             val textColor = TypedValue()
             if (trick.color == 0) {
-                trickImage.load(trick.image)
-                trickTitle.text = trick.title
-                trickDesc.text = trick.description
-                cardView.visibility = View.VISIBLE
                 theme.resolveAttribute(R.attr.colorPrimary, cardColor, true)
                 theme.resolveAttribute(R.attr.colorOnPrimary, textColor, true)
-                cardView.setCardBackgroundColor(cardColor.data)
-                trickTitle.setTextColor(textColor.data)
-                trickDesc.setTextColor(textColor.data)
+
             }
             else {
-                alternativeTrickImage.load(trick.image)
-                alternativeTrickTitle.text = trick.title
-                alternativeTrickDesc.text = trick.description
-                alternativeCardView.visibility = View.VISIBLE
                 theme.resolveAttribute(R.attr.colorSecondary, cardColor, true)
                 theme.resolveAttribute(R.attr.colorOnSecondary, textColor, true)
-                alternativeCardView.setCardBackgroundColor(cardColor.data)
-                alternativeTrickTitle.setTextColor(textColor.data)
-                alternativeTrickDesc.setTextColor(textColor.data)
             }
+            trickImage.load(trick.image)
+            trickTitle.text = trick.title
+            trickDesc.text = trick.description
+            cardView.setCardBackgroundColor(cardColor.data)
+            trickTitle.setTextColor(textColor.data)
+            trickDesc.setTextColor(textColor.data)
 
         }
     }

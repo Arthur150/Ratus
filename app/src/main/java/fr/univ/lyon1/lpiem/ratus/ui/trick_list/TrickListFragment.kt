@@ -32,7 +32,7 @@ class TrickListFragment : Fragment() {
         tricksRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.tricks.observe(viewLifecycleOwner) { tricks ->
-            tricksRecyclerView.adapter = TrickAdapter(tricks)
+            tricksRecyclerView.adapter = TrickListAdapter(tricks)
         }
 
         return view
