@@ -51,4 +51,8 @@
     <string name="next">Next</string>
     <string name="_10_00">10.00 €</string>
     <string name="please_complete_all_fields">Please complete all the fields</string>
+    <string name="is_the_transaction_recurring">Is the transaction recurring ?</string>
+    <string name="transaction_s_date">Transaction\'s date</string>
+    <string name="yes">yes</string>
+    <string name="no">no</string>
 </resources>
