@@ -41,7 +41,7 @@ class TransactionViewHolder private constructor(
             )
             transactionAmount.text = tools.formatCurrency(transaction.amount)
             transactionDate.text = transaction.date?.toDate()?.let { dateFormat.format(it) }
-            transationName.text = transaction.title
+            transactionName.text = transaction.title
             transactionCategoryImageView.setImageDrawable(
                 getDrawable(
                     root.context,

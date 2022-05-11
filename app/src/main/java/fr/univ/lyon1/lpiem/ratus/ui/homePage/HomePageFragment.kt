@@ -38,6 +38,7 @@ class HomePageFragment : Fragment() {
             title = getString(R.string.home)
             setDisplayHomeAsUpEnabled(false)
         }
+        viewModel.getUserDetails()
 
         val budgetCard = view.findViewById<CardView>(R.id.homeBudgetCard)
         val budgetBalance = view.findViewById<TextView>(R.id.homeBudgetBalanceTextView)
@@ -77,10 +78,14 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_trickListFragment)
         }
 
-        tipsRecyclerView.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        tipsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(tipsRecyclerView)
+
+        viewModel.tricks.observe(viewLifecycleOwner) { trickList ->
+            tipsRecyclerView.adapter = TrickAdapter(trickList)
+        }
+
 
         showAllFunds.setOnClickListener {
             findNavController().navigate(R.id.action_homePageFragment_to_fundListFragment)
@@ -115,6 +120,7 @@ class HomePageFragment : Fragment() {
                             )
                             text = tools.formatCurrency(sortedTransaction[index].amount)
                         }
+                        visibility = View.VISIBLE
                     }
                 }
             }
@@ -130,14 +136,18 @@ class HomePageFragment : Fragment() {
                 slices = sliceList
             }
 
-            //TODO change transactions to tricks
-            tipsRecyclerView.adapter = TransactionAdapter(sortedTransaction)
-
             //TODO change transactions to funds
             fundsRecyclerView.adapter =
                 TransactionAdapter(sortedTransaction.plus(sortedTransaction))
+
         }
 
         return view
     }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getUserDetails()
+    }
+
 }

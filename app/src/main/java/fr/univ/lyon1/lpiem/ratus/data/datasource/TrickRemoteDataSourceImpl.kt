@@ -21,4 +21,21 @@ class TrickRemoteDataSourceImpl(
             Result.failure(t)
         }
     }
+
+    override suspend fun getTrick(id: String): Result<Trick> {
+        return try {
+            val document = networking.getTrick(id)
+            val trick = document.toObject(Trick::class.java)
+
+            if (trick != null){
+                Result.success(trick)
+            }
+            else {
+                Result.failure(IllegalStateException())
+            }
+        }
+        catch (t : Throwable) {
+            Result.failure(t)
+        }
+    }
 }
