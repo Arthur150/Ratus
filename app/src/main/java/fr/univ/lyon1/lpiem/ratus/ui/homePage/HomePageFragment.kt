@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
-import fr.univ.lyon1.lpiem.ratus.ui.budget.TransactionAdapter
+import fr.univ.lyon1.lpiem.ratus.ui.fund_list.FundAdapter
 import ir.mahozad.android.PieChart
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel

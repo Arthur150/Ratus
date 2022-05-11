@@ -57,5 +57,14 @@ class UserNetworking {
         return getUserWithUID(uid)
     }
 
+    suspend fun getUserWithReference(ref: DocumentReference): DocumentSnapshot {
+        return ref
+            .get()
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "getUserWithReference: ", exception)
+            }
+            .await()
+    }
+
 
 }

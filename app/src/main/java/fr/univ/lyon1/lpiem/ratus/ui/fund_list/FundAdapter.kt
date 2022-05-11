@@ -1,9 +1,8 @@
-package fr.univ.lyon1.lpiem.ratus.ui.homePage
+package fr.univ.lyon1.lpiem.ratus.ui.fund_list
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.model.Fund
-import fr.univ.lyon1.lpiem.ratus.ui.budget.TransactionViewHolder
 
 class FundAdapter(private val fundList: List<Fund>) :
     RecyclerView.Adapter<FundViewHolder>()

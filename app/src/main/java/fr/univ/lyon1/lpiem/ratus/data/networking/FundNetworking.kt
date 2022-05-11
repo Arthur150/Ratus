@@ -16,9 +16,13 @@ class FundNetworking {
     private val db = Firebase.firestore
 
     suspend fun getFundsWithContributorUID(uid: String): QuerySnapshot? {
+        val user = db.collection("users")
+            .document(uid)
+            .get()
+            .await()
 
         return db.collection("funds")
-            .whereArrayContains("contributors", uid)
+            .whereArrayContains("contributors", user.reference)
             .get()
             .addOnFailureListener { exception ->
                 Log.e(TAG, "getFundsWithContributorUID: ", exception)

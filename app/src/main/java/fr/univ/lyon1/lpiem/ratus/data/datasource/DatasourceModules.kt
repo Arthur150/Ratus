@@ -9,7 +9,7 @@ object DatasourceModules {
         }
 
         single<FundRemoteDataSource> {
-            FundRemoteDataSourceImpl(get())
+            FundRemoteDataSourceImpl(get(), get())
         }
 
         single<TrickRemoteDataSource> {
