@@ -60,4 +60,15 @@
     <string name="until">Until</string>
     <string name="if_no_end_date_is_mentioned_the_recurrence_is_infinite">If no end date is mentioned, the recurrence is infinite.</string>
     <string name="what_is_the_transaction_s_name">What is the transaction\'s name ?</string>
+    <string name="cancel">Cancel</string>
+    <string name="validate">Validate</string>
+    <string name="my_transaction">My transaction</string>
+    <string name="date_recurrence">Date/Recurrence</string>
+    <string name="category">Category</string>
+    <string name="amount">Amount</string>
+    <string name="type">Type</string>
+    <string name="recurrence_start">Recurrence start</string>
+    <string name="recurrence_end">Recurrence end</string>
+    <string name="transaction_date">Transaction\'s date</string>
+    <string name="recurrence">Recurrence</string>
 </resources>

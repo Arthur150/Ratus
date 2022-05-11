@@ -26,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_transaction_recurrence.xml" value="0.4015625" />
         <entry key="app/src/main/res/layout/fragment_transaction_recurrence_disable.xml" value="0.4015625" />
         <entry key="app/src/main/res/layout/fragment_transaction_recurrence_enable.xml" value="0.4015625" />
-        <entry key="app/src/main/res/layout/fragment_transaction_summary.xml" value="0.4015625" />
+        <entry key="app/src/main/res/layout/fragment_transaction_summary.xml" value="0.37158469945355194" />
         <entry key="app/src/main/res/layout/recurrence_type_spinner_item.xml" value="0.39855072463768115" />
         <entry key="app/src/main/res/layout/textview_category.xml" value="0.4015625" />
         <entry key="app/src/main/res/layout/transaction_list_item.xml" value="0.4015625" />
