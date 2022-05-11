@@ -153,11 +153,11 @@ class TransactionRecurrenceFragment : Fragment() {
 
         nextButton.setOnClickListener {
             if (transactionDate != null && segmentedControl.checkedRadioButtonId != -1){
-                val bundle = bundleOf(
-                    "amount" to requireArguments().getString("amount"),
-                    "category" to requireArguments().get("category") as TransactionCategory,
-                    "transactionDate" to transactionDate.toString()
-                )
+                val bundle = Bundle()
+                bundle.putSerializable("category", requireArguments().get("category") as TransactionCategory)
+                bundle.putDouble("amount", requireArguments().getDouble("amount"))
+                bundle.putSerializable("transactionDate", transactionDate?.toDate())
+
                 when(recurrenceConstraintLayout.isGone){
                     false -> {
                         if (recurrenceStartDate != null && recurrenceTypeSpinner.selectedItem != null) {

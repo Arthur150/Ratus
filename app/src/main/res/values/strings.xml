@@ -59,4 +59,5 @@
     <string name="from_the">From the</string>
     <string name="until">Until</string>
     <string name="if_no_end_date_is_mentioned_the_recurrence_is_infinite">If no end date is mentioned, the recurrence is infinite.</string>
+    <string name="what_is_the_transaction_s_name">What is the transaction\'s name ?</string>
 </resources>

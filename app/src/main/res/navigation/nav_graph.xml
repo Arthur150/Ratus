@@ -104,7 +104,7 @@
             app:argType="fr.univ.lyon1.lpiem.ratus.model.TransactionCategory" />
         <argument
             android:name="amount"
-            app:argType="string" />
+            app:argType="java.lang.Double" />
         <argument
             android:name="recurrence"
             app:argType="fr.univ.lyon1.lpiem.ratus.model.Recurrence"
@@ -112,7 +112,7 @@
             android:defaultValue="@null" />
         <argument
             android:name="transactionDate"
-            app:argType="string" />
+            app:argType="java.util.Date" />
     </fragment>
     <fragment
         android:id="@+id/transactionRecurrenceFragment"
@@ -128,7 +128,7 @@
             android:defaultValue="SHOPPING" />
         <argument
             android:name="amount"
-            app:argType="string" />
+            app:argType="java.lang.Double" />
     </fragment>
     <fragment
         android:id="@+id/transactionSummaryFragment"
@@ -139,18 +139,7 @@
             android:id="@+id/action_transactionSummaryFragment_to_budgetFragment"
             app:destination="@id/budgetFragment" />
         <argument
-            android:name="amount"
-            app:argType="string" />
-        <argument
-            android:name="category"
-            app:argType="fr.univ.lyon1.lpiem.ratus.model.TransactionCategory" />
-        <argument
-            android:name="recurrence"
-            app:argType="fr.univ.lyon1.lpiem.ratus.model.Recurrence"
-            app:nullable="true"
-            android:defaultValue="@null" />
-        <argument
-            android:name="name"
-            app:argType="string" />
+            android:name="transaction"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.Transaction" />
     </fragment>
 </navigation>

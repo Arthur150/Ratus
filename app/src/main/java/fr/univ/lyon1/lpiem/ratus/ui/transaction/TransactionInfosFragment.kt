@@ -74,10 +74,9 @@ class TransactionInfosFragment : Fragment() {
 
         nextButton.setOnClickListener {
             if (transactionAmountEditText.text.isNotEmpty() && segmentedControl.checkedRadioButtonId != -1) {
-                val bundle = bundleOf(
-                    "amount" to getAmountValueString(transactionAmountEditText.text.toString(), segmentedControl.checkedRadioButtonId),
-                    "category" to transactionCategorySpinner.selectedItem as TransactionCategory
-                )
+                val bundle = Bundle()
+                bundle.putSerializable("category", transactionCategorySpinner.selectedItem as TransactionCategory)
+                bundle.putDouble("amount", getAmountValue(transactionAmountEditText.text.toString(), segmentedControl.checkedRadioButtonId))
                 findNavController().navigate(R.id.action_transactionInfosFragment_to_transactionRecurrenceFragment, bundle)
             } else {
                 Toast.makeText(requireContext(),R.string.please_complete_all_fields, Toast.LENGTH_SHORT).show()
@@ -87,15 +86,15 @@ class TransactionInfosFragment : Fragment() {
         return view
     }
 
-    private fun getAmountValueString(amount: String, inOut: Int): String {
+    private fun getAmountValue(amount: String, inOut: Int): Double {
         val numberFormat = NumberFormat.getInstance()
         numberFormat.maximumFractionDigits = 2
         numberFormat.currency = Currency.getInstance("EUR")
 
         return if (inOut == 0) {
-            "+${numberFormat.format(amount.toDouble())}"
+            numberFormat.format(amount.toDouble().absoluteValue).toDouble()
         } else {
-            "-${numberFormat.format(amount.toDouble())}"
+            -numberFormat.format(amount.toDouble().absoluteValue).toDouble()
         }
     }
 }
