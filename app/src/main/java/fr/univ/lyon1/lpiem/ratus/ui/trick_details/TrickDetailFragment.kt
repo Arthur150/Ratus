@@ -12,11 +12,11 @@ import fr.univ.lyon1.lpiem.ratus.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URLDecoder
 
-class TrickDetailFragment : Fragment() {
+
+class TrickDetailFragment : Fragment()
+{
 
     private val viewModel by viewModel<TrickDetailViewModel>()
-
-    private lateinit var webView : WebView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,15 +39,15 @@ class TrickDetailFragment : Fragment() {
             viewModel.getTrick(id)
         }
 
-        webView = view.findViewById(R.id.webView)
+        val webView = view.findViewById<WebView>(R.id.webView)
         webView.webViewClient = WebViewClient()
-        webView.settings.javaScriptEnabled = true
 
-        viewModel.trick.observe(viewLifecycleOwner) {
-            webView.loadUrl(URLDecoder.decode(it.content_url, "UTF-8"))
+        viewModel.trick.observe(viewLifecycleOwner) { trick ->
+            webView.loadUrl(URLDecoder.decode(trick.content_url, "UTF-8"))
             (activity as MainActivity).supportActionBar?.apply {
-                title = it.title
+                title = trick.title.replaceFirstChar { it.uppercase() }
             }
+
         }
 
     }
