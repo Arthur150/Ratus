@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/medical_services.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/movie.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/payments.xml" value="0.349" />
+        <entry key="app/src/main/res/drawable/progressbar_shape.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/redeem.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/savings.xml" value="0.349" />
         <entry key="app/src/main/res/drawable/shopping_basket.xml" value="0.349" />
@@ -24,15 +25,26 @@
         <entry key="app/src/main/res/layout-v26/view_holder_trick.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.35333333333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1287037037037037" />
+        <entry key="app/src/main/res/layout/activity_profile.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/activity_ratus_tip.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_budget.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_edit_fund.xml" value="0.184375" />
         <entry key="app/src/main/res/layout/fragment_edit_profile.xml" value="0.184375" />
+        <entry key="app/src/main/res/layout/fragment_fund.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_fund_list.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_infos.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_name.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_recurrence.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_recurrence_disable.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_recurrence_enable.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_transaction_summary.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_trick_detail.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/fragment_trick_list.xml" value="0.2546875" />
         <entry key="app/src/main/res/layout/view_holder_big_trick.xml" value="0.428125" />
+        <entry key="app/src/main/res/layout/view_holder_fund.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/view_holder_transaction.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/view_holder_trick.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />

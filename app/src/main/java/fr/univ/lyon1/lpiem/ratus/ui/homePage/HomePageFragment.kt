@@ -38,7 +38,6 @@ class HomePageFragment : Fragment() {
             title = getString(R.string.home)
             setDisplayHomeAsUpEnabled(false)
         }
-        viewModel.getUserDetails()
 
         val budgetCard = view.findViewById<CardView>(R.id.homeBudgetCard)
         val budgetBalance = view.findViewById<TextView>(R.id.homeBudgetBalanceTextView)
@@ -84,6 +83,10 @@ class HomePageFragment : Fragment() {
 
         viewModel.tricks.observe(viewLifecycleOwner) { trickList ->
             tipsRecyclerView.adapter = TrickAdapter(trickList)
+        }
+
+        viewModel.funds.observe(viewLifecycleOwner) { fundList ->
+            fundsRecyclerView.adapter = FundAdapter(fundList)
         }
 
 
@@ -135,10 +138,6 @@ class HomePageFragment : Fragment() {
             pieChart.apply {
                 slices = sliceList
             }
-
-            //TODO change transactions to funds
-            fundsRecyclerView.adapter =
-                TransactionAdapter(sortedTransaction.plus(sortedTransaction))
 
         }
 

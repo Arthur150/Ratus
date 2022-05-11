@@ -10,7 +10,7 @@ import org.koin.dsl.module
 object UiModules {
     private val viewModelModule = module {
         viewModel {
-            HomePageViewModel(get(), get())
+            HomePageViewModel(get(), get(), get())
         }
         viewModel {
             BudgetViewModel(get())
