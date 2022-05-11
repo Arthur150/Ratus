@@ -110,6 +110,9 @@
             app:argType="fr.univ.lyon1.lpiem.ratus.model.Recurrence"
             app:nullable="true"
             android:defaultValue="@null" />
+        <argument
+            android:name="transactionDate"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/transactionRecurrenceFragment"

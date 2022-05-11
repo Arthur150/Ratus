@@ -46,18 +46,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recurrenceSegmentedControl" />
 
-    <EditText
-        android:id="@+id/transactionDateEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:editable="false"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transactionDateTextView" />
-
     <Button
         android:id="@+id/transactionRecurrenceNextButton"
         android:layout_width="0dp"
@@ -65,12 +53,26 @@
         android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
-        android:text="@string/next"
         android:backgroundTint="?attr/colorSecondary"
+        android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/transactionDateEditText"
+        app:layout_constraintTop_toBottomOf="@+id/transactionDateButton"
         app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/transactionDateButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="110dp"
+        android:backgroundTint="?attr/colorOnPrimary"
+        android:text="__/__/____"
+        android:textColor="?attr/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/transactionDateTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

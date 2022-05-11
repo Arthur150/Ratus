@@ -14,6 +14,8 @@ import com.creageek.segmentedbutton.SegmentedButton
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
 import java.util.*
 
 class TransactionRecurrenceFragment : Fragment() {
@@ -30,7 +32,7 @@ class TransactionRecurrenceFragment : Fragment() {
         }
 
         val segmentedControl = view.findViewById<SegmentedButton>(R.id.recurrenceSegmentedControl)
-        val transactionDateEditText = view.findViewById<EditText>(R.id.transactionDateEditText)
+        val transactionDateButton = view.findViewById<Button>(R.id.transactionDateButton)
         val nextButton = view.findViewById<Button>(R.id.transactionRecurrenceNextButton)
 
         segmentedControl.apply {
@@ -53,28 +55,38 @@ class TransactionRecurrenceFragment : Fragment() {
 
         }
 
-        var cal = Calendar.getInstance()
+        val calendar = Calendar.getInstance(TimeZone.getDefault())
 
-        // create an OnDateSetListener
-        val dateSetListener =
-            DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
-                cal.set(Calendar.YEAR, year)
-                cal.set(Calendar.MONTH, monthOfYear)
-                cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-                //updateDateInView()
-            }
+        var transactionDate: Timestamp? = null
+        transactionDateButton.setOnClickListener { button ->
 
-        transactionDateEditText.setOnClickListener {
+            // create an OnDateSetListener
+            val dateSetListener =
+                DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+                    calendar.set(Calendar.YEAR, year)
+                    calendar.set(Calendar.MONTH, monthOfYear)
+                    calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+                    transactionDate = calendar.time as Timestamp
+                    (button as Button).text = SimpleDateFormat("dd/MM/yyyy",Locale.getDefault()).format(calendar.time)
+                }
+
             DatePickerDialog(requireContext(),
                 dateSetListener,
                 // set DatePickerDialog to point to today's date when it loads up
-                cal.get(Calendar.YEAR),
-                cal.get(Calendar.MONTH),
-                cal.get(Calendar.DAY_OF_MONTH)).show()
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
         nextButton.setOnClickListener {
-            findNavController().navigate(R.id.action_transactionRecurrenceFragment_to_transactionNameFragment)
+            if (transactionDate != null){
+                val bundle = bundleOf(
+                    "amount" to requireArguments().getString("amount"),
+                    "category" to requireArguments().get("category") as TransactionCategory,
+                    "transactionDate" to transactionDate
+                )
+                findNavController().navigate(R.id.action_transactionRecurrenceFragment_to_transactionNameFragment)
+            }
         }
 
         return view
