@@ -1,6 +1,7 @@
 package fr.univ.lyon1.lpiem.ratus.ui
 
 import fr.univ.lyon1.lpiem.ratus.ui.budget.BudgetViewModel
+import fr.univ.lyon1.lpiem.ratus.ui.fund_details.FundViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.fund_list.FundListViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.homePage.HomePageViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.trick_details.TrickDetailViewModel
@@ -24,6 +25,9 @@ object UiModules {
         }
         viewModel {
             FundListViewModel(get())
+        }
+        viewModel {
+            FundViewModel(get())
         }
     }
 

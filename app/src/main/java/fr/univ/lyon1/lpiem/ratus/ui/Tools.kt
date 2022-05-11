@@ -56,4 +56,9 @@ class Tools {
 
         return totalCategoriesPercents
     }
+
+    fun formatAmount(amount: Double): CharSequence? {
+        val numberFormat = NumberFormat.getInstance()
+        return "${numberFormat.format(amount)} ${numberFormat.currency?.symbol}"
+    }
 }

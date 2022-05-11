@@ -51,9 +51,8 @@ class FundViewHolder private constructor(
                     }
                 }
             }
-            val numberFormat = NumberFormat.getInstance()
             fundTitle.text = fund.title.replaceFirstChar { it.uppercase() }
-            fundGoal.text = "${numberFormat.format(fund.goal)} ${numberFormat.currency?.symbol}"
+            fundGoal.text = tools.formatAmount(fund.goal)
             fundImage.load("https://imgs.search.brave.com/TKa5b4yJKYD8wF0fvgJtZ7MP39weL0AeHFSkW6xNJU4/rs:fit:870:580:1/g:ce/aHR0cHM6Ly9mb3Jl/aWducG9saWN5aS5v/cmcvd3AtY29udGVu/dC91cGxvYWRzLzIw/MTkvMDgvdmFjYXRp/b24ucG5n")
             fundProgressBar.max = fund.goal.roundToInt()
             fundProgressBar.progress= fund.amount.roundToInt()

@@ -2,11 +2,13 @@ package fr.univ.lyon1.lpiem.ratus
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,7 +53,9 @@ class LoginActivity : AppCompatActivity() {
         if (result.resultCode == RESULT_OK) {
             // Successfully signed in
 
-            Toast.makeText(this, getString(R.string.connected), Toast.LENGTH_SHORT).show()
+            val user = FirebaseAuth.getInstance().currentUser
+            Log.d(TAG, "onSignInResult: ${user?.photoUrl}")
+            Toast.makeText(this, "Welcome ${user?.displayName}", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
