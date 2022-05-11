@@ -55,4 +55,8 @@
     <string name="transaction_s_date">Transaction\'s date</string>
     <string name="yes">yes</string>
     <string name="no">no</string>
+    <string name="date_button_placeholder">__/__/____</string>
+    <string name="from_the">From the</string>
+    <string name="until">Until</string>
+    <string name="if_no_end_date_is_mentioned_the_recurrence_is_infinite">If no end date is mentioned, the recurrence is infinite.</string>
 </resources>

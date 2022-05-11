@@ -3,11 +3,6 @@ package fr.univ.lyon1.lpiem.ratus.model
 import fr.univ.lyon1.lpiem.ratus.R
 
 enum class RecurrenceType(val text: Int) {
-    /** @since Unknown type */
-    UNKNOWN(R.string.unknown),
-
-    /** @since None */
-    NONE(R.string.none),
 
     /** @since Every day */
     DAILY(R.string.daily),
@@ -41,7 +36,6 @@ enum class RecurrenceType(val text: Int) {
     companion object {
         fun stringToRecurrenceType(type: String): RecurrenceType {
             when (type) {
-                NONE.toFirestoreString() -> return NONE
                 DAILY.toFirestoreString() -> return DAILY
                 WEEKLY.toFirestoreString() -> return WEEKLY
                 BIWEEKLY.toFirestoreString() -> return BIWEEKLY
@@ -51,7 +45,7 @@ enum class RecurrenceType(val text: Int) {
                 ANNUAL.toFirestoreString() -> return ANNUAL
                 BIANNUAL.toFirestoreString() -> return BIANNUAL
             }
-            return UNKNOWN
+            return DAILY
         }
     }
 }

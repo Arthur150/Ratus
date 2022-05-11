@@ -30,7 +30,10 @@ class CategoryAdapter(context: Context, private val categoryList: List<Transacti
         val textView = view.findViewById<TextView>(R.id.categoryItemTextView)
 
         imageView.setImageResource(categoryList[position].icon)
-        textView.text = context.getString(categoryList[position].text)
+        textView.apply {
+            text = context.getString(categoryList[position].text)
+            setTextColor(context.getColor(categoryList[position].color))
+        }
 
         return view
     }

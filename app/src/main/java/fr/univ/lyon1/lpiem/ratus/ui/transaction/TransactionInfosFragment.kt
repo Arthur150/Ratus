@@ -6,10 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -18,6 +15,7 @@ import com.creageek.segmentedbutton.SegmentedButton
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
+import org.w3c.dom.Text
 import java.text.NumberFormat
 import java.util.*
 import kotlin.math.absoluteValue
@@ -36,18 +34,30 @@ class TransactionInfosFragment : Fragment() {
         }
 
         val segmentedControl = view.findViewById<SegmentedButton>(R.id.transactionInfosSegmentedControl)
+        val transactionAmountLabel = view.findViewById<TextView>(R.id.transactionAmountTextView)
         val transactionAmountEditText = view.findViewById<EditText>(R.id.transactionAmountEditText)
+        val transactionCategoryLabel = view.findViewById<TextView>(R.id.transactionCategoryTextView)
         val transactionCategorySpinner = view.findViewById<Spinner>(R.id.transactionCategorySpinner)
         val nextButton = view.findViewById<Button>(R.id.transactionInfosNextButton)
+
+        transactionAmountLabel.visibility = View.GONE
+        transactionAmountEditText.visibility = View.GONE
+        transactionCategoryLabel.visibility = View.GONE
+        transactionCategorySpinner.visibility = View.GONE
+        nextButton.visibility = View.GONE
 
         segmentedControl.apply {
             initWithItems {
                 listOf(getString(R.string.`in`),getString(R.string.out))
             }
-            initialCheckedIndex = 0
             // notifies when segment was checked
             onSegmentChecked { segment ->
                 Log.d("segmented", "Segment ${segment.text} checked")
+                transactionAmountLabel.visibility = View.VISIBLE
+                transactionAmountEditText.visibility = View.VISIBLE
+                transactionCategoryLabel.visibility = View.VISIBLE
+                transactionCategorySpinner.visibility = View.VISIBLE
+                nextButton.visibility = View.VISIBLE
             }
             // notifies when segment was unchecked
             onSegmentUnchecked { segment ->
@@ -63,7 +73,7 @@ class TransactionInfosFragment : Fragment() {
         transactionCategorySpinner.adapter = CategoryAdapter(requireContext(),TransactionCategory.values().toList())
 
         nextButton.setOnClickListener {
-            if (transactionAmountEditText.text.isNotEmpty()) {
+            if (transactionAmountEditText.text.isNotEmpty() && segmentedControl.checkedRadioButtonId != -1) {
                 val bundle = bundleOf(
                     "amount" to getAmountValueString(transactionAmountEditText.text.toString(), segmentedControl.checkedRadioButtonId),
                     "category" to transactionCategorySpinner.selectedItem as TransactionCategory
