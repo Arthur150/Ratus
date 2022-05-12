@@ -60,11 +60,11 @@
 
     <!--#region Icon Colors-->
     <color name="shopping_color">#34c924</color>
-    <color name="vehicle_color">#03224c</color>
+    <color name="vehicle_color">#095FD9</color>
     <color name="sport_color">#f88b0b</color>
     <color name="culture_color">#ff40ff</color>
     <color name="entertainment_color">#25fde9</color>
-    <color name="travel_color">#006fe3</color>
+    <color name="travel_color">#00C2F7</color>
     <color name="savings_color">#ffff00</color>
     <color name="taxes_color">#bb0b0b</color>
     <color name="gift_color">#e9383f</color>

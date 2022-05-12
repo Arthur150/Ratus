@@ -67,11 +67,15 @@
         tools:layout="@layout/fragment_budget">
         <action
             android:id="@+id/action_budgetFragment_to_transactionInfosFragment"
+            android:id="@+id/action_budgetFragment_to_homePageFragment" />
             app:destination="@id/transactionInfosFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
+        <action
+            android:id="@+id/action_budgetFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/fundFragment"
@@ -137,7 +141,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionInfosFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionInfosFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionInfosFragment"
         android:label="fragment_transaction_infos"
         tools:layout="@layout/fragment_transaction_infos">
         <action
@@ -150,7 +154,7 @@
     </fragment>
     <fragment
         android:id="@+id/transactionNameFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionNameFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionNameFragment"
         android:label="fragment_transaction_name"
         tools:layout="@layout/fragment_transaction_name">
         <action
@@ -161,10 +165,24 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
+        <argument
+            android:name="category"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.TransactionCategory" />
+        <argument
+            android:name="amount"
+            app:argType="java.lang.Double" />
+        <argument
+            android:name="recurrence"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.Recurrence"
+            app:nullable="true"
+            android:defaultValue="@null" />
+        <argument
+            android:name="transactionDate"
+            app:argType="java.util.Date" />
     </fragment>
     <fragment
         android:id="@+id/transactionRecurrenceFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionRecurrenceFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionRecurrenceFragment"
         android:label="fragment_transaction_recurrence"
         tools:layout="@layout/fragment_transaction_recurrence">
         <action
@@ -174,10 +192,17 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
+        <argument
+            android:name="category"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.TransactionCategory"
+            android:defaultValue="SHOPPING" />
+        <argument
+            android:name="amount"
+            app:argType="java.lang.Double" />
     </fragment>
     <fragment
         android:id="@+id/transactionSummaryFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.TransactionSummaryFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionSummaryFragment"
         android:label="fragment_transaction_summary"
         tools:layout="@layout/fragment_transaction_summary">
         <action
@@ -187,5 +212,11 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
+        <argument
+            android:name="transaction"
+            app:argType="fr.univ.lyon1.lpiem.ratus.model.Transaction" />
+        <action
+            android:id="@+id/action_transactionSummaryFragment_to_homePageFragment"
+            app:destination="@id/homePageFragment" />
     </fragment>
 </navigation>

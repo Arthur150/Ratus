@@ -2,6 +2,7 @@ package fr.univ.lyon1.lpiem.ratus.ui
 
 import fr.univ.lyon1.lpiem.ratus.ui.budget.BudgetViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.homePage.HomePageViewModel
+import fr.univ.lyon1.lpiem.ratus.ui.transaction.TransactionViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.trick_details.TrickDetailViewModel
 import fr.univ.lyon1.lpiem.ratus.ui.trick_list.TrickListViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -20,6 +21,9 @@ object UiModules {
         }
         viewModel {
             TrickDetailViewModel(get())
+        }
+        viewModel {
+            TransactionViewModel(get())
         }
     }
 
