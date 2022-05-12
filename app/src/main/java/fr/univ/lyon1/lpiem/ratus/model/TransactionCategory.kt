@@ -1,6 +1,5 @@
 package fr.univ.lyon1.lpiem.ratus.model
 
-import android.graphics.Color
 import fr.univ.lyon1.lpiem.ratus.R
 
 enum class TransactionCategory(val icon: Int, val text: Int, val color: Int) {
@@ -17,7 +16,7 @@ enum class TransactionCategory(val icon: Int, val text: Int, val color: Int) {
     CULTURE(R.drawable.auto_stories, R.string.culture, R.color.culture_color),
 
     /** @since Entertainment */
-    ENTERTAINMENT(R.drawable.movie, R.string.entertaiment, R.color.entertainment_color),
+    ENTERTAINMENT(R.drawable.movie, R.string.entertainment, R.color.entertainment_color),
 
     /** @since Travel */
     TRAVEL(R.drawable.flight_takeoff, R.string.travel, R.color.travel_color),
