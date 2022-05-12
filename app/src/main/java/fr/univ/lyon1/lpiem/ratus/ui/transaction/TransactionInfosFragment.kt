@@ -46,6 +46,8 @@ class TransactionInfosFragment : Fragment() {
         transactionCategorySpinner.visibility = View.GONE
         nextButton.visibility = View.GONE
 
+        var segmentCheckedId = -1
+
         segmentedControl.apply {
             initWithItems {
                 listOf(getString(R.string.`in`),getString(R.string.out))
@@ -58,6 +60,11 @@ class TransactionInfosFragment : Fragment() {
                 transactionCategoryLabel.visibility = View.VISIBLE
                 transactionCategorySpinner.visibility = View.VISIBLE
                 nextButton.visibility = View.VISIBLE
+
+                when(segment.text){
+                    getString(R.string.`in`) -> segmentCheckedId = 0
+                    getString(R.string.out) -> segmentCheckedId = 1
+                }
             }
             // notifies when segment was unchecked
             onSegmentUnchecked { segment ->
@@ -76,7 +83,7 @@ class TransactionInfosFragment : Fragment() {
             if (transactionAmountEditText.text.isNotEmpty() && segmentedControl.checkedRadioButtonId != -1) {
                 val bundle = Bundle()
                 bundle.putSerializable("category", transactionCategorySpinner.selectedItem as TransactionCategory)
-                bundle.putDouble("amount", getAmountValue(transactionAmountEditText.text.toString(), segmentedControl.checkedRadioButtonId))
+                bundle.putDouble("amount", getAmountValue(transactionAmountEditText.text.toString(), segmentCheckedId))
                 findNavController().navigate(R.id.action_transactionInfosFragment_to_transactionRecurrenceFragment, bundle)
             } else {
                 Toast.makeText(requireContext(),R.string.please_complete_all_fields, Toast.LENGTH_SHORT).show()
@@ -87,14 +94,11 @@ class TransactionInfosFragment : Fragment() {
     }
 
     private fun getAmountValue(amount: String, inOut: Int): Double {
-        val numberFormat = NumberFormat.getInstance()
-        numberFormat.maximumFractionDigits = 2
-        numberFormat.currency = Currency.getInstance("EUR")
 
         return if (inOut == 0) {
-            numberFormat.format(amount.toDouble().absoluteValue).toDouble()
+            amount.toDouble().absoluteValue
         } else {
-            -numberFormat.format(amount.toDouble().absoluteValue).toDouble()
+            -amount.toDouble().absoluteValue
         }
     }
 }

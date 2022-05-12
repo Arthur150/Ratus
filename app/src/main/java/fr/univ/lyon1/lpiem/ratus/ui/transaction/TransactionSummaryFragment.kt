@@ -8,20 +8,25 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
+import fr.univ.lyon1.lpiem.ratus.domain.AddTransactionUseCase
 import fr.univ.lyon1.lpiem.ratus.model.Recurrence
 import fr.univ.lyon1.lpiem.ratus.model.RecurrenceType
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
 class TransactionSummaryFragment : Fragment() {
 
     private val tools by inject<Tools>()
+    private val transactionViewModel by viewModel<TransactionViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,37 +55,55 @@ class TransactionSummaryFragment : Fragment() {
         val transactionCancelButton = view.findViewById<Button>(R.id.transactionSummaryCancelButton)
         val transactionValidateButton = view.findViewById<Button>(R.id.transactionSummaryValidateButton)
 
-        val transaction = requireArguments().getSerializable("transaction") as Transaction
+        transactionViewModel.transaction = requireArguments().getSerializable("transaction") as Transaction
 
 
 
-        transactionName.text = transaction.title
-        transactionAmount.text = tools.formatCurrency(transaction.amount)
-        transactionCategory.text =  "${getString(R.string.category)} : ${getString(TransactionCategory.stringToTransactionCategory(transaction.category).text)}"
+        transactionName.text = transactionViewModel.transaction.title
+        transactionAmount.apply {
+            text = tools.formatCurrency(transactionViewModel.transaction.amount)
+            setTextColor(tools.getCurrencyTextColor(requireContext(),transactionViewModel.transaction.amount))
+        }
 
-        if (transaction.recurrence == null){
+        transactionCategory.text =  "${getString(R.string.category)} : ${getString(TransactionCategory.stringToTransactionCategory(transactionViewModel.transaction.category).text)}"
+
+        if (transactionViewModel.transaction.recurrence == null){
             transactionDateRecurrenceLabel.text = getString(R.string.transaction_date)
             transactionRecurrenceLayout.visibility = View.GONE
             transactionDate.visibility = View.VISIBLE
             transactionDate.text =
-                transaction.date?.toDate()
+                transactionViewModel.transaction.date?.toDate()
                     ?.let { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it) }
 
         } else {
             transactionDateRecurrenceLabel.text = getString(R.string.recurrence)
             transactionDate.visibility = View.GONE
-            transactionDate.visibility = View.VISIBLE
-            transactionRecurrenceType.text = getString(RecurrenceType.stringToRecurrenceType(transaction.recurrence.type).text)
-            transactionRecurrenceStart.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(transaction.recurrence.start)
-            transactionRecurrenceEnd.text = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(transaction.recurrence.end)
+            transactionRecurrenceType.text = transactionViewModel.transaction.recurrence?.type?.let {
+                RecurrenceType.stringToRecurrenceType(
+                    it
+                ).text
+            }?.let { getString(it) }
+            transactionRecurrenceStart.text = "${getString(R.string.from_the)} : ${
+                transactionViewModel.transaction.recurrence?.start?.toDate()
+                    ?.let { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it) }
+            }"
+
+            transactionRecurrenceEnd.text = "${getString(R.string.until)} : ${
+                transactionViewModel.transaction.recurrence?.end?.toDate()
+                    ?.let { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it) }
+            }"
+
         }
 
         transactionCancelButton.setOnClickListener {
-            //TODO return to home
+            findNavController().navigate(R.id.action_transactionSummaryFragment_to_homePageFragment)
         }
 
         transactionValidateButton.setOnClickListener {
-            //TODO send transaction to firebase and return to home
+
+            transactionViewModel.sendTransaction()
+
+            findNavController().navigate(R.id.action_transactionSummaryFragment_to_homePageFragment)
         }
 
         return view
