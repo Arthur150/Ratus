@@ -30,4 +30,9 @@
         <item name="colorShadow">@color/md_theme_dark_shadow</item>
         <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
     </style>
+
+    <style name="RatusProgressBar" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="colorControlActivated">@color/md_theme_dark_primary</item>
+        <item name="android:progressDrawable">@drawable/progressbar_shape</item>
+    </style>
 </resources>

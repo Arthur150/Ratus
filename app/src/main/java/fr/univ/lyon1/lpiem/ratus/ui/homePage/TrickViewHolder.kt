@@ -14,7 +14,6 @@ import fr.univ.lyon1.lpiem.ratus.databinding.ViewHolderTrickBinding
 import fr.univ.lyon1.lpiem.ratus.model.Trick
 import fr.univ.lyon1.lpiem.ratus.R as RatusR
 
-
 class TrickViewHolder private constructor(
     private val binding: ViewHolderTrickBinding
 ) : RecyclerView.ViewHolder(binding.root) {

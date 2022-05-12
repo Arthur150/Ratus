@@ -8,6 +8,7 @@ import android.view.MenuItem
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.firebase.auth.FirebaseAuth
 import fr.univ.lyon1.lpiem.ratus.ui.profile.ProfileActivity
 
 
@@ -43,6 +44,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.profileItem -> {
                 val intent = Intent(this, ProfileActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                 startActivity(intent)
             }
         }
@@ -50,4 +52,10 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+    override fun onResume() {
+        super.onResume()
+        if (FirebaseAuth.getInstance().currentUser == null){
+            finish()
+        }
+    }
 }

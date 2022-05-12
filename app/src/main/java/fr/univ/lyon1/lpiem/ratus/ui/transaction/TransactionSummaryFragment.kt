@@ -22,6 +22,7 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.HashMap
 
 class TransactionSummaryFragment : Fragment() {
 
@@ -55,8 +56,8 @@ class TransactionSummaryFragment : Fragment() {
         val transactionCancelButton = view.findViewById<Button>(R.id.transactionSummaryCancelButton)
         val transactionValidateButton = view.findViewById<Button>(R.id.transactionSummaryValidateButton)
 
-        transactionViewModel.transaction = requireArguments().getSerializable("transaction") as Transaction
-
+        val map = requireArguments().getSerializable("transaction") as HashMap<String, Any?>
+        transactionViewModel.transaction = Transaction.fromParcelableHashMap(map)
 
 
         transactionName.text = transactionViewModel.transaction.title

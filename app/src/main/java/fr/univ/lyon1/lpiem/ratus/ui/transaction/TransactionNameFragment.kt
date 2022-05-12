@@ -42,7 +42,7 @@ class TransactionNameFragment : Fragment() {
                     requireArguments().getSerializable("recurrence") as Recurrence?
                 )
                 val bundle = Bundle()
-                bundle.putSerializable("transaction",transaction)
+                bundle.putSerializable("transaction", transaction.toParcelableHashMap())
                 findNavController().navigate(R.id.action_transactionNameFragment_to_transactionSummaryFragment, bundle)
             } else {
                 Toast.makeText(requireContext(),R.string.please_complete_all_fields, Toast.LENGTH_SHORT).show()

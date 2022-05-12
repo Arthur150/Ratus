@@ -14,6 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="40dp"
         android:backgroundTint="?attr/colorSecondary"
+        android:elevation="4dp"
         android:fontFamily="@font/inter_semibold"
         android:text="@string/add_a_transaction"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,6 +44,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="22dp"
         app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myBudgetTextView">
@@ -177,7 +179,9 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tipsTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/tipsTextView"
+        tools:itemCount="1"
+        tools:listitem="@layout/view_holder_trick" />
 
     <TextView
         android:id="@+id/myFunsTextView"
@@ -221,15 +225,14 @@
         android:id="@+id/homeFundsRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/myFunsTextView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:itemCount="3"
+        tools:listitem="@layout/view_holder_fund" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
-import fr.univ.lyon1.lpiem.ratus.ui.budget.TransactionAdapter
+import fr.univ.lyon1.lpiem.ratus.ui.fund_list.FundAdapter
 import ir.mahozad.android.PieChart
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -38,7 +38,6 @@ class HomePageFragment : Fragment() {
             title = getString(R.string.home)
             setDisplayHomeAsUpEnabled(false)
         }
-        viewModel.getUserDetails()
 
         val budgetCard = view.findViewById<CardView>(R.id.homeBudgetCard)
         val budgetBalance = view.findViewById<TextView>(R.id.homeBudgetBalanceTextView)
@@ -84,6 +83,10 @@ class HomePageFragment : Fragment() {
 
         viewModel.tricks.observe(viewLifecycleOwner) { trickList ->
             tipsRecyclerView.adapter = TrickAdapter(trickList)
+        }
+
+        viewModel.funds.observe(viewLifecycleOwner) { fundList ->
+            fundsRecyclerView.adapter = FundAdapter(fundList)
         }
 
 
@@ -135,10 +138,6 @@ class HomePageFragment : Fragment() {
             pieChart.apply {
                 slices = sliceList
             }
-
-            //TODO change transactions to funds
-            fundsRecyclerView.adapter =
-                TransactionAdapter(sortedTransaction.plus(sortedTransaction))
 
         }
 

@@ -75,7 +75,7 @@
     </fragment>
     <fragment
         android:id="@+id/fundFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.FundFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.fund_details.FundFragment"
         android:label="fragment_fund"
         tools:layout="@layout/fragment_fund">
         <action
@@ -101,7 +101,7 @@
     </fragment>
     <fragment
         android:id="@+id/fundListFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.FundListFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.fund_list.FundListFragment"
         android:label="fragment_fund_list"
         tools:layout="@layout/fragment_fund_list">
         <action

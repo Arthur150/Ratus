@@ -1,19 +1,30 @@
 package fr.univ.lyon1.lpiem.ratus.data.datasource
 
 import fr.univ.lyon1.lpiem.ratus.data.networking.FundNetworking
+import fr.univ.lyon1.lpiem.ratus.data.networking.UserNetworking
+import fr.univ.lyon1.lpiem.ratus.model.FirebaseFund
+import fr.univ.lyon1.lpiem.ratus.model.FirebaseUser
 import fr.univ.lyon1.lpiem.ratus.model.Fund
+import fr.univ.lyon1.lpiem.ratus.model.User
 
 class FundRemoteDataSourceImpl(
-    private val networking: FundNetworking
+    private val networking: FundNetworking,
+    private val userNetworking: UserNetworking
 ) : FundRemoteDataSource {
     override suspend fun getFundsWithContributorUID(uid: String): Result<List<Fund>> {
         return try {
-            val query =
-                networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
+            val query = networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
             val funds: ArrayList<Fund> = ArrayList()
             for (document in query.documents) {
-                document.toObject(Fund::class.java)?.let {
-                    funds.add(it)
+                document.toObject(FirebaseFund::class.java)?.let {
+                    val contributors : ArrayList<User> = arrayListOf()
+                    for (ref in it.contributors) {
+                        val userDocument = userNetworking.getUserWithReference(ref)
+                        userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
+                            contributors.add(contributor.toUser(arrayListOf()))
+                        }
+                    }
+                    funds.add(it.toFund(contributors))
                 }
             }
 
@@ -26,11 +37,21 @@ class FundRemoteDataSourceImpl(
     override suspend fun getFundWithID(id: String): Result<Fund> {
         return try {
             val document = networking.getFundWithID(id)
-            val fund = document?.toObject(Fund::class.java)
+            val firebaseFund  = document?.toObject(FirebaseFund::class.java)
 
-            if (fund != null) {
+            val contributors : ArrayList<User> = arrayListOf()
+            for (ref in firebaseFund?.contributors ?: arrayListOf()) {
+                val userDocument = userNetworking.getUserWithReference(ref)
+                userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
+                    contributors.add(contributor.toUser(arrayListOf()))
+                }
+            }
+            val fund = firebaseFund?.toFund(contributors)
+
+            if (fund != null){
                 Result.success(fund)
-            } else {
+            }
+            else {
                 Result.failure(IllegalStateException())
             }
         } catch (t: Throwable) {

@@ -4,6 +4,8 @@ import com.google.firebase.firestore.DocumentReference
 
 data class FirebaseUser(
     val uid : String = "",
+    val thumbnail : String = "",
+    val username : String = "",
     val balance : Double = 0.0,
     val transactions : List<DocumentReference> = arrayListOf()
 ) {
@@ -11,7 +13,9 @@ data class FirebaseUser(
         return User(
             uid = uid,
             balance = balance,
-            transactions = transactionsList
+            transactions = transactionsList,
+            thumbnail = thumbnail,
+            username = username
         )
     }
 }

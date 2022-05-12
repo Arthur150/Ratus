@@ -1,6 +1,7 @@
 package fr.univ.lyon1.lpiem.ratus.data.networking
 
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
@@ -33,9 +34,14 @@ class UserNetworking {
     }
 
     suspend fun createUser(uid: String): DocumentSnapshot {
+        val firebaseUser = FirebaseAuth.getInstance().currentUser
         db.collection(COLLECTION_NAME)
             .document(uid)
-            .set(User(uid = uid).toHashMap())
+            .set(User(
+                uid = uid,
+                thumbnail = firebaseUser?.photoUrl?.path ?: "",
+                username = firebaseUser?.displayName ?: ""
+            ).toHashMap())
             .addOnFailureListener { exception ->
                 Log.e(TAG, "createUser: ", exception)
             }
@@ -55,6 +61,15 @@ class UserNetworking {
             }
             .await()
         return getUserWithUID(uid)
+    }
+
+    suspend fun getUserWithReference(ref: DocumentReference): DocumentSnapshot {
+        return ref
+            .get()
+            .addOnFailureListener { exception ->
+                Log.e(TAG, "getUserWithReference: ", exception)
+            }
+            .await()
     }
 
 

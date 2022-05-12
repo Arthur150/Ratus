@@ -22,7 +22,7 @@
     <string name="vehicle">Vehicle</string>
     <string name="sport">Sport</string>
     <string name="culture">Culture</string>
-    <string name="entertaiment">Entertaiment</string>
+    <string name="entertainment">Entertainment</string>
     <string name="travel">Travel</string>
     <string name="savings">Savings</string>
     <string name="taxes">Taxes</string>
@@ -45,6 +45,9 @@
     <string name="tips_title">Discover the Ratus tips to save even more!</string>
     <string name="tips">Tips</string>
     <string name="ratus_tip">Ratus tip</string>
+    <string name="participate">Participate in the fund</string>
+    <string name="contributors">Contributors</string>
+    <string name="disconnect">Disconnect</string>
     <string name="what_is_the_transaction_s_type">What is the transaction\'s type ?</string>
     <string name="new_transaction">New transaction</string>
     <string name="in">In</string>
