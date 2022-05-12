@@ -35,7 +35,9 @@ class ProfileFragment : Fragment() {
 
         view.findViewById<Button>(R.id.disconnectButton).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            startActivity(Intent(requireContext(), LoginActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            )
         }
 
         return view

@@ -50,24 +50,36 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         val response = result.idpResponse
-        if (result.resultCode == RESULT_OK) {
-            // Successfully signed in
+        when (result.resultCode) {
+            RESULT_OK -> {
+                // Successfully signed in
 
-            val user = FirebaseAuth.getInstance().currentUser
-            Log.d(TAG, "onSignInResult: ${user?.photoUrl}")
-            Toast.makeText(this, "Welcome ${user?.displayName}", Toast.LENGTH_SHORT).show()
+                val user = FirebaseAuth.getInstance().currentUser
+                Log.d(TAG, "onSignInResult: ${user?.photoUrl}")
+                Toast.makeText(this, "Welcome ${user?.displayName}", Toast.LENGTH_SHORT).show()
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+                val intent = Intent(this, MainActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                startActivity(intent)
+                finish()
 
-            // ...
-        } else {
-            // Sign in failed. If response is null the user canceled the
-            // sign-in flow using the back button. Otherwise check
-            // response.getError().getErrorCode() and handle the error.
-            // ...
-            Toast.makeText(this, response?.error?.localizedMessage, Toast.LENGTH_SHORT).show()
+                // ...
+            }
+            RESULT_CANCELED -> {
+                finish()
+            }
+            else -> {
+                // Sign in failed. If response is null the user canceled the
+                // sign-in flow using the back button. Otherwise check
+                // response.getError().getErrorCode() and handle the error.
+                // ...
+                Toast.makeText(this, response?.error?.localizedMessage, Toast.LENGTH_SHORT).show()
+            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
     }
 }

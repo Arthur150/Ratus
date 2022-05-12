@@ -17,7 +17,8 @@ class SplashActivity : AppCompatActivity() {
             // This method will be executed once the timer is over
             // Start your app main activity
 
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
 
             // close this activity
             finish()

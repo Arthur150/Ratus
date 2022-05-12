@@ -50,6 +50,8 @@
         <entry key="app/src/main/res/layout/view_holder_transaction.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/view_holder_trick.xml" value="0.42916666666666664" />
         <entry key="app/src/main/res/layout/view_holder_user.xml" value="0.2708333333333333" />
+        <entry key="app/src/main/res/menu/profile_toolbar_menu.xml" value="0.21614583333333334" />
+        <entry key="app/src/main/res/menu/toolbar_menu.xml" value="0.21614583333333334" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1925" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1925" />
       </map>
