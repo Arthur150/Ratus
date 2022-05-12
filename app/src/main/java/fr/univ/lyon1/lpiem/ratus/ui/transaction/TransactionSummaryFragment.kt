@@ -5,15 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
-import fr.univ.lyon1.lpiem.ratus.domain.AddTransactionUseCase
-import fr.univ.lyon1.lpiem.ratus.model.Recurrence
 import fr.univ.lyon1.lpiem.ratus.model.RecurrenceType
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
@@ -22,7 +21,6 @@ import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.HashMap
 
 class TransactionSummaryFragment : Fragment() {
 
@@ -59,6 +57,10 @@ class TransactionSummaryFragment : Fragment() {
         val map = requireArguments().getSerializable("transaction") as HashMap<String, Any?>
         transactionViewModel.transaction = Transaction.fromParcelableHashMap(map)
 
+        val alertDialog = AlertDialog.Builder(requireContext())
+            .setView(ProgressBar(requireContext()))
+            .setMessage(getString(R.string.loading))
+            .create()
 
         transactionName.text = transactionViewModel.transaction.title
         transactionAmount.apply {
@@ -101,9 +103,12 @@ class TransactionSummaryFragment : Fragment() {
         }
 
         transactionValidateButton.setOnClickListener {
-
             transactionViewModel.sendTransaction()
+            alertDialog.show()
+        }
 
+        transactionViewModel.user.observe(viewLifecycleOwner){
+            alertDialog.dismiss()
             findNavController().navigate(R.id.action_transactionSummaryFragment_to_homePageFragment)
         }
 
