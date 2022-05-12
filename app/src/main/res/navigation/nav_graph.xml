@@ -67,15 +67,11 @@
         tools:layout="@layout/fragment_budget">
         <action
             android:id="@+id/action_budgetFragment_to_transactionInfosFragment"
-            android:id="@+id/action_budgetFragment_to_homePageFragment" />
             app:destination="@id/transactionInfosFragment"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
-        <action
-            android:id="@+id/action_budgetFragment_to_homePageFragment"
-            app:destination="@id/homePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/fundFragment"
