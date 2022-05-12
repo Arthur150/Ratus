@@ -65,14 +65,14 @@
             app:tint="?attr/colorSecondary" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/disconnectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="?attr/colorOnSecondary"
             android:elevation="4dp"
-            android:text="Modify your account"
-            android:textColor="?attr/colorSecondary"
+            android:text="@string/disconnect"
+            android:textColor="?attr/colorError"
             android:theme="@style/Theme.Ratus"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
