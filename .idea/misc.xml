@@ -36,7 +36,7 @@
         <entry key="app/src/main/res/layout/fragment_fund.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_fund_list.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_home_page.xml" value="0.375" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25416666666666665" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.5" />
         <entry key="app/src/main/res/layout/fragment_transaction_infos.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_transaction_name.xml" value="0.25416666666666665" />
         <entry key="app/src/main/res/layout/fragment_transaction_recurrence.xml" value="0.25416666666666665" />
