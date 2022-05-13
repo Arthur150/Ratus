@@ -1,16 +1,11 @@
 package fr.univ.lyon1.lpiem.ratus.ui
 
 import android.content.Context
-import android.util.Log
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
-import ir.mahozad.android.PieChart
 import java.text.NumberFormat
-import java.util.ArrayList
-import kotlin.coroutines.coroutineContext
 import kotlin.math.absoluteValue
 
 class Tools {
@@ -32,9 +27,9 @@ class Tools {
         }
     }
 
-    fun getCategoryPrecents(transactions: List<Transaction>): Map<TransactionCategory,Float> {
+    fun getCategoryPrecents(transactions: List<Transaction>): Map<TransactionCategory, Float> {
         var total = 0.0
-        val totalCategories = mutableMapOf<TransactionCategory,Double>()
+        val totalCategories = mutableMapOf<TransactionCategory, Double>()
 
         TransactionCategory.values().forEach { transactionCategory ->
             totalCategories[transactionCategory] = 0.0
@@ -47,11 +42,12 @@ class Tools {
             }
         }
 
-        val totalCategoriesPercents = mutableMapOf<TransactionCategory,Float>()
+        val totalCategoriesPercents = mutableMapOf<TransactionCategory, Float>()
         TransactionCategory.values().forEach { transactionCategory ->
-            totalCategoriesPercents[transactionCategory] = (totalCategories[transactionCategory]?.div(
-                total
-            ))?.toFloat() ?: 0f
+            totalCategoriesPercents[transactionCategory] =
+                (totalCategories[transactionCategory]?.div(
+                    total
+                ))?.toFloat() ?: 0f
         }
 
         return totalCategoriesPercents

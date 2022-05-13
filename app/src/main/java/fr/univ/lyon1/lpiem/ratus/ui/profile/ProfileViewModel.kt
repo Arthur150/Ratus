@@ -14,7 +14,7 @@ class ProfileViewModel(
 ) : ViewModel() {
     val user = MutableLiveData<User>()
 
-    fun getUser(){
+    fun getUser() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
             viewModelScope.launch(Dispatchers.IO) {

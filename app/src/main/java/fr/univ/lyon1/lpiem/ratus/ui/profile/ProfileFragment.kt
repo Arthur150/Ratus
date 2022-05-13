@@ -41,7 +41,7 @@ class ProfileFragment : Fragment() {
                 val size = 900 //pixels
                 val qrCodeContent = user.uid
                 val bits = QRCodeWriter().encode(qrCodeContent, BarcodeFormat.QR_CODE, size, size)
-                val bitmap =  Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
+                val bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565).also {
                     for (x in 0 until size) {
                         for (y in 0 until size) {
                             it.setPixel(x, y, if (bits[x, y]) Color.BLACK else Color.WHITE)
@@ -62,8 +62,9 @@ class ProfileFragment : Fragment() {
 
         view.findViewById<Button>(R.id.disconnectButton).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(requireContext(), LoginActivity::class.java)
-                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(
+                Intent(requireContext(), LoginActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             )
         }
 

@@ -6,5 +6,5 @@ data class Trick(
     val image: String = "",
     val title: String = "",
     val content_url: String = "",
-    var color : Int = 0
+    var color: Int = 0
 )

@@ -8,9 +8,9 @@ import fr.univ.lyon1.lpiem.ratus.model.Trick
 
 class TrickListViewModel(
     private val getTricksUseCase: GetTricksUseCase
-) :ViewModel() {
+) : ViewModel() {
 
-    val tricks : LiveData<List<Trick>> = liveData {
+    val tricks: LiveData<List<Trick>> = liveData {
         emit(getTricksUseCase.invoke())
     }
 

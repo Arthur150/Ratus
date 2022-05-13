@@ -1,19 +1,17 @@
 package fr.univ.lyon1.lpiem.ratus.ui.transaction
 
 import android.content.Context
-import android.graphics.drawable.Icon
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.getDrawable
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
 
 class CategoryAdapter(context: Context, private val categoryList: List<TransactionCategory>) :
-    ArrayAdapter<TransactionCategory>(context, 0,categoryList) {
+    ArrayAdapter<TransactionCategory>(context, 0, categoryList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return initView(position, convertView, parent)
@@ -25,7 +23,8 @@ class CategoryAdapter(context: Context, private val categoryList: List<Transacti
 
     private fun initView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.category_spinner_item,parent,false)
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.category_spinner_item, parent, false)
         val imageView = view.findViewById<ImageView>(R.id.categoryItemImageView)
         val textView = view.findViewById<TextView>(R.id.categoryItemTextView)
 

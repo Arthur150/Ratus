@@ -3,7 +3,6 @@ package fr.univ.lyon1.lpiem.ratus.ui.trick_list
 import android.util.Log
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.Trick
 
 class TrickListAdapter(private val trickList: List<Trick>) :

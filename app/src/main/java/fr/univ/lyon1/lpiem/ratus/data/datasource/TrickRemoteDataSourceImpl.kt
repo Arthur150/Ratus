@@ -27,14 +27,12 @@ class TrickRemoteDataSourceImpl(
             val document = networking.getTrick(id)
             val trick = document.toObject(Trick::class.java)
 
-            if (trick != null){
+            if (trick != null) {
                 Result.success(trick)
-            }
-            else {
+            } else {
                 Result.failure(IllegalStateException())
             }
-        }
-        catch (t : Throwable) {
+        } catch (t: Throwable) {
             Result.failure(t)
         }
     }

@@ -5,4 +5,6 @@ import fr.univ.lyon1.lpiem.ratus.model.Fund
 interface FundRepository {
     suspend fun getFundsWithContributorUID(uid: String): List<Fund>
     suspend fun getFundWithID(id: String): Fund
+    suspend fun addContributor(id: String, uid: String): Fund
+    suspend fun createFund(newFund: Fund): Fund
 }

@@ -25,7 +25,7 @@ class UserViewHolder private constructor(
     }
 
     fun bind(user: User) {
-        with(binding){
+        with(binding) {
             userName.text = user.username
             userImage.load(user.thumbnail)
         }

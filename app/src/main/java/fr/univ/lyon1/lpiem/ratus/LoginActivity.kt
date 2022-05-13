@@ -78,8 +78,4 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 }

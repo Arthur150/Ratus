@@ -21,7 +21,6 @@ import fr.univ.lyon1.lpiem.ratus.ui.fund_list.FundAdapter
 import ir.mahozad.android.PieChart
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.ArrayList
 
 class HomePageFragment : Fragment() {
 
@@ -77,7 +76,8 @@ class HomePageFragment : Fragment() {
             findNavController().navigate(R.id.action_homePageFragment_to_trickListFragment)
         }
 
-        tipsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        tipsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(tipsRecyclerView)
 
@@ -131,9 +131,12 @@ class HomePageFragment : Fragment() {
             val totalCategoriesPercent = tools.getCategoryPrecents(user.transactions)
             val sliceList = ArrayList<PieChart.Slice>()
             totalCategoriesPercent.forEach { totalCategory ->
-                sliceList.add(PieChart.Slice(totalCategory.value,
-                    getColor(requireContext(),totalCategory.key.color)
-                ))
+                sliceList.add(
+                    PieChart.Slice(
+                        totalCategory.value,
+                        getColor(requireContext(), totalCategory.key.color)
+                    )
+                )
             }
             pieChart.apply {
                 slices = sliceList

@@ -6,7 +6,7 @@ import fr.univ.lyon1.lpiem.ratus.model.Trick
 class GetTrickUseCase(
     private val trickRepository: TrickRepository
 ) {
-    suspend operator fun invoke(id : String) : Trick {
+    suspend operator fun invoke(id: String): Trick {
         return trickRepository.getTrick(id)
     }
 }
