@@ -1,5 +1,8 @@
 package fr.univ.lyon1.lpiem.ratus.ui.profile
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -10,7 +13,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import coil.load
 import com.google.firebase.auth.FirebaseAuth
@@ -37,7 +42,15 @@ class ProfileFragment : Fragment() {
 
         viewModel.getUser().observe(viewLifecycleOwner) { user ->
             view.findViewById<TextView>(R.id.username).text = user.username
-            view.findViewById<TextView>(R.id.userUID).text = user.uid
+            view.findViewById<TextView>(R.id.userUID).apply {
+                text = user.uid
+                setOnClickListener {
+                    val clipboardManager = requireActivity().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                    val clipData = ClipData.newPlainText("text", user.uid)
+                    clipboardManager.setPrimaryClip(clipData)
+                    Toast.makeText(requireContext(), context.getString(R.string.text_copied_to_clipboard), Toast.LENGTH_LONG).show()
+                }
+            }
             view.findViewById<ImageView>(R.id.userThumbnail).load(user.thumbnail)
 
             view.findViewById<ImageView>(R.id.qr_codeCreator).setOnClickListener {
