@@ -7,4 +7,5 @@ interface FundRepository {
     suspend fun getFundWithID(id: String): Fund
     suspend fun addContributor(id: String, uid: String): Fund
     suspend fun createFund(newFund: Fund): Fund
+    suspend fun updateFund(updatedFund: Fund): Fund
 }

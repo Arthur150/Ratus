@@ -10,4 +10,6 @@ interface FundRemoteDataSource {
     suspend fun addContributor(id: String, uid: String): Result<Fund>
 
     suspend fun createFund(newFund: Fund): Result<Fund>
+
+    suspend fun updateFund(updatedFund: Fund): Result<Fund>
 }

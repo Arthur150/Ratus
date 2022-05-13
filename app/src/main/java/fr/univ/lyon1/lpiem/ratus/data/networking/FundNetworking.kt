@@ -86,4 +86,14 @@ class FundNetworking {
             .await()
     }
 
+    suspend fun updateFund(fund: Fund) : DocumentSnapshot? {
+        db.collection("funds")
+            .document(fund.id)
+            .update("goal", fund.goal,
+            "title", fund.title)
+            .await()
+
+        return getFundWithID(fund.id)
+    }
+
 }
