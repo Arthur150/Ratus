@@ -58,8 +58,6 @@ class ProfileFragment : Fragment() {
         }
 
 
-
-
         viewModel.getUser()
 
         view.findViewById<Button>(R.id.disconnectButton).setOnClickListener {
