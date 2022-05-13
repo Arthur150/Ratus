@@ -34,8 +34,9 @@ class TransactionNameFragment : Fragment() {
         val nameEditText = view.findViewById<EditText>(R.id.transactionNameEditText)
 
         nextButton.setOnClickListener {
-            if (nameEditText.text.isNotEmpty()){
-                val transaction = Transaction(nameEditText.text.toString(),
+            if (nameEditText.text.isNotEmpty()) {
+                val transaction = Transaction(
+                    nameEditText.text.toString(),
                     requireArguments().getDouble("amount"),
                     (requireArguments().get("category") as TransactionCategory).toFirestoreString(),
                     Timestamp(requireArguments().getSerializable("transactionDate") as Date),
@@ -43,9 +44,16 @@ class TransactionNameFragment : Fragment() {
                 )
                 val bundle = Bundle()
                 bundle.putSerializable("transaction", transaction.toParcelableHashMap())
-                findNavController().navigate(R.id.action_transactionNameFragment_to_transactionSummaryFragment, bundle)
+                findNavController().navigate(
+                    R.id.action_transactionNameFragment_to_transactionSummaryFragment,
+                    bundle
+                )
             } else {
-                Toast.makeText(requireContext(),R.string.please_complete_all_fields, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.please_complete_all_fields,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

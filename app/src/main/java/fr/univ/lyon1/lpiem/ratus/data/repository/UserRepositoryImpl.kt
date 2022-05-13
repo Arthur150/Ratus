@@ -16,7 +16,11 @@ class UserRepositoryImpl(
         }
     }
 
-    override suspend fun addTransaction(uid: String, newTransaction : Transaction, newBalance : Double): User {
+    override suspend fun addTransaction(
+        uid: String,
+        newTransaction: Transaction,
+        newBalance: Double
+    ): User {
         return dataSource.addTransaction(uid, newTransaction, newBalance).getOrThrow()
     }
 

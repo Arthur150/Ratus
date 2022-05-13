@@ -9,13 +9,22 @@ data class FirebaseFund(
     val amount: Double = 0.0,
     val title: String = ""
 ) {
-    fun toFund(contributorList: ArrayList<User>): Fund {
+    fun toFund(contributorList: List<User>): Fund {
         return Fund(
             id = this.id,
             contributors = contributorList,
             goal = this.goal,
             amount = this.amount,
             title = this.title
+        )
+    }
+
+    fun toHashMap(): HashMap<String, Any?> {
+        return hashMapOf(
+            "contributors" to contributors,
+            "goal" to goal,
+            "amount" to amount,
+            "title" to title
         )
     }
 }

@@ -10,7 +10,7 @@ import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.RecurrenceType
 
 class RecurrenceTypeAdapter(context: Context, private val typeList: List<RecurrenceType>) :
-    ArrayAdapter<RecurrenceType>(context, 0,typeList) {
+    ArrayAdapter<RecurrenceType>(context, 0, typeList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return initView(position, convertView, parent)
@@ -22,7 +22,8 @@ class RecurrenceTypeAdapter(context: Context, private val typeList: List<Recurre
 
     private fun initView(position: Int, convertView: View?, parent: ViewGroup): View {
 
-        val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.recurrence_type_spinner_item,parent,false)
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.recurrence_type_spinner_item, parent, false)
         val textView = view.findViewById<TextView>(R.id.recurrenceTypeTextView)
 
         textView.text = context.getString(typeList[position].text)

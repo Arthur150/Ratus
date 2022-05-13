@@ -29,7 +29,7 @@ object UiModules {
             FundListViewModel(get())
         }
         viewModel {
-            FundViewModel(get())
+            FundViewModel(get(), get())
         }
         viewModel {
             ProfileViewModel(get())

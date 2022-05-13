@@ -75,9 +75,12 @@ class BudgetFragment : Fragment() {
             val totalCategoriesPercent = tools.getCategoryPrecents(user.transactions)
             val sliceList = ArrayList<PieChart.Slice>()
             totalCategoriesPercent.forEach { totalCategory ->
-                sliceList.add(PieChart.Slice(totalCategory.value,
-                    ContextCompat.getColor(requireContext(), totalCategory.key.color)
-                ))
+                sliceList.add(
+                    PieChart.Slice(
+                        totalCategory.value,
+                        ContextCompat.getColor(requireContext(), totalCategory.key.color)
+                    )
+                )
             }
             pieChart.apply {
                 slices = sliceList

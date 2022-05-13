@@ -1,14 +1,11 @@
 package fr.univ.lyon1.lpiem.ratus.model
 
-import android.os.Parcelable
 import com.google.firebase.Timestamp
-import fr.univ.lyon1.lpiem.ratus.model.Transaction.Companion.fromParcelableHashMap
 import java.io.Serializable
 import java.util.*
-import kotlin.collections.HashMap
 
 
-data class Transaction (
+data class Transaction(
     val title: String = "",
     val amount: Double = 0.0,
     val category: String = "",
@@ -25,7 +22,7 @@ data class Transaction (
         )
     }
 
-    fun toParcelableHashMap() : HashMap<String, Any?> {
+    fun toParcelableHashMap(): HashMap<String, Any?> {
         return hashMapOf(
             "amount" to amount,
             "category" to category,
@@ -36,10 +33,11 @@ data class Transaction (
     }
 
     companion object {
-        fun fromParcelableHashMap(map : HashMap<String, Any?>) : Transaction {
-            var recurrence : Recurrence? = null
+        fun fromParcelableHashMap(map: HashMap<String, Any?>): Transaction {
+            var recurrence: Recurrence? = null
             if (map["recurrence"] != null) {
-                recurrence = Recurrence.fromParcelableHashMap(map["recurrence"] as HashMap<String, Any?>)
+                recurrence =
+                    Recurrence.fromParcelableHashMap(map["recurrence"] as HashMap<String, Any?>)
             }
             return Transaction(
                 amount = map["amount"] as Double,

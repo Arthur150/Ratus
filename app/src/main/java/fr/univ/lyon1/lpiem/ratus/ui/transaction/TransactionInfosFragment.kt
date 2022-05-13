@@ -1,23 +1,17 @@
 package fr.univ.lyon1.lpiem.ratus.ui.transaction
 
 import android.os.Bundle
-import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.os.bundleOf
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.creageek.segmentedbutton.SegmentedButton
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.model.TransactionCategory
-import org.w3c.dom.Text
-import java.text.NumberFormat
-import java.util.*
 import kotlin.math.absoluteValue
 
 class TransactionInfosFragment : Fragment() {
@@ -33,7 +27,8 @@ class TransactionInfosFragment : Fragment() {
             setDisplayHomeAsUpEnabled(true)
         }
 
-        val segmentedControl = view.findViewById<SegmentedButton>(R.id.transactionInfosSegmentedControl)
+        val segmentedControl =
+            view.findViewById<SegmentedButton>(R.id.transactionInfosSegmentedControl)
         val transactionAmountLabel = view.findViewById<TextView>(R.id.transactionAmountTextView)
         val transactionAmountEditText = view.findViewById<EditText>(R.id.transactionAmountEditText)
         val transactionCategoryLabel = view.findViewById<TextView>(R.id.transactionCategoryTextView)
@@ -50,7 +45,7 @@ class TransactionInfosFragment : Fragment() {
 
         segmentedControl.apply {
             initWithItems {
-                listOf(getString(R.string.`in`),getString(R.string.out))
+                listOf(getString(R.string.`in`), getString(R.string.out))
             }
             // notifies when segment was checked
             onSegmentChecked { segment ->
@@ -61,7 +56,7 @@ class TransactionInfosFragment : Fragment() {
                 transactionCategorySpinner.visibility = View.VISIBLE
                 nextButton.visibility = View.VISIBLE
 
-                when(segment.text){
+                when (segment.text) {
                     getString(R.string.`in`) -> segmentCheckedId = 0
                     getString(R.string.out) -> segmentCheckedId = 1
                 }
@@ -77,16 +72,30 @@ class TransactionInfosFragment : Fragment() {
 
         }
 
-        transactionCategorySpinner.adapter = CategoryAdapter(requireContext(),TransactionCategory.values().toList())
+        transactionCategorySpinner.adapter =
+            CategoryAdapter(requireContext(), TransactionCategory.values().toList())
 
         nextButton.setOnClickListener {
             if (transactionAmountEditText.text.isNotEmpty() && segmentedControl.checkedRadioButtonId != -1) {
                 val bundle = Bundle()
-                bundle.putSerializable("category", transactionCategorySpinner.selectedItem as TransactionCategory)
-                bundle.putDouble("amount", getAmountValue(transactionAmountEditText.text.toString(), segmentCheckedId))
-                findNavController().navigate(R.id.action_transactionInfosFragment_to_transactionRecurrenceFragment, bundle)
+                bundle.putSerializable(
+                    "category",
+                    transactionCategorySpinner.selectedItem as TransactionCategory
+                )
+                bundle.putDouble(
+                    "amount",
+                    getAmountValue(transactionAmountEditText.text.toString(), segmentCheckedId)
+                )
+                findNavController().navigate(
+                    R.id.action_transactionInfosFragment_to_transactionRecurrenceFragment,
+                    bundle
+                )
             } else {
-                Toast.makeText(requireContext(),R.string.please_complete_all_fields, Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    R.string.please_complete_all_fields,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
 

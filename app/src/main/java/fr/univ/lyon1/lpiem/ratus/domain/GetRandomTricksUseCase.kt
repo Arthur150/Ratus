@@ -8,10 +8,9 @@ class GetRandomTricksUseCase(
 ) {
     suspend operator fun invoke(): List<Trick> {
         val tricks = repository.getTricks().shuffled()
-        return if (tricks.size > 4){
-            tricks.subList(0,5).toList()
-        }
-        else {
+        return if (tricks.size > 4) {
+            tricks.subList(0, 5).toList()
+        } else {
             tricks.toList()
         }
     }
