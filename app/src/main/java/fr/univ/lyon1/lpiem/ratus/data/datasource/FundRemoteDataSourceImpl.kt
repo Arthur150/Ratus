@@ -13,11 +13,12 @@ class FundRemoteDataSourceImpl(
 ) : FundRemoteDataSource {
     override suspend fun getFundsWithContributorUID(uid: String): Result<List<Fund>> {
         return try {
-            val query = networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
+            val query =
+                networking.getFundsWithContributorUID(uid) ?: return Result.success(arrayListOf())
             val funds: ArrayList<Fund> = ArrayList()
             for (document in query.documents) {
                 document.toObject(FirebaseFund::class.java)?.let {
-                    val contributors : ArrayList<User> = arrayListOf()
+                    val contributors: ArrayList<User> = arrayListOf()
                     for (ref in it.contributors) {
                         val userDocument = userNetworking.getUserWithReference(ref)
                         userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
@@ -37,9 +38,9 @@ class FundRemoteDataSourceImpl(
     override suspend fun getFundWithID(id: String): Result<Fund> {
         return try {
             val document = networking.getFundWithID(id)
-            val firebaseFund  = document?.toObject(FirebaseFund::class.java)
+            val firebaseFund = document?.toObject(FirebaseFund::class.java)
 
-            val contributors : ArrayList<User> = arrayListOf()
+            val contributors: ArrayList<User> = arrayListOf()
             for (ref in firebaseFund?.contributors ?: arrayListOf()) {
                 val userDocument = userNetworking.getUserWithReference(ref)
                 userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
@@ -48,10 +49,57 @@ class FundRemoteDataSourceImpl(
             }
             val fund = firebaseFund?.toFund(contributors)
 
-            if (fund != null){
+            if (fund != null) {
                 Result.success(fund)
+            } else {
+                Result.failure(IllegalStateException())
             }
-            else {
+        } catch (t: Throwable) {
+            Result.failure(t)
+        }
+    }
+
+    override suspend fun addContributor(id: String, uid: String): Result<Fund> {
+        return try {
+            val document = networking.addContributor(id, uid)
+            val firebaseFund = document?.toObject(FirebaseFund::class.java)
+
+            val contributors: ArrayList<User> = arrayListOf()
+            for (ref in firebaseFund?.contributors ?: arrayListOf()) {
+                val userDocument = userNetworking.getUserWithReference(ref)
+                userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
+                    contributors.add(contributor.toUser(arrayListOf()))
+                }
+            }
+            val fund = firebaseFund?.toFund(contributors)
+
+            if (fund != null) {
+                Result.success(fund)
+            } else {
+                Result.failure(IllegalStateException())
+            }
+        } catch (t: Throwable) {
+            Result.failure(t)
+        }
+    }
+
+    override suspend fun createFund(newFund: Fund): Result<Fund> {
+        return try {
+            val document = networking.createFund(newFund)
+            val firebaseFund = document?.toObject(FirebaseFund::class.java)
+
+            val contributors: ArrayList<User> = arrayListOf()
+            for (ref in firebaseFund?.contributors ?: arrayListOf()) {
+                val userDocument = userNetworking.getUserWithReference(ref)
+                userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
+                    contributors.add(contributor.toUser(arrayListOf()))
+                }
+            }
+            val fund = firebaseFund?.toFund(contributors)
+
+            if (fund != null) {
+                Result.success(fund)
+            } else {
                 Result.failure(IllegalStateException())
             }
         } catch (t: Throwable) {

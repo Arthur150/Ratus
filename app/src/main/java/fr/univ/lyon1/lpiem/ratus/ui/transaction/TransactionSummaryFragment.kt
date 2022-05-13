@@ -39,20 +39,27 @@ class TransactionSummaryFragment : Fragment() {
         }
 
         val transactionName = view.findViewById<TextView>(R.id.transactionSummaryNameTextView)
-        val transactionAmount =  view.findViewById<TextView>(R.id.transactionSummaryAmountTextView)
-        val transactionCategory = view.findViewById<TextView>(R.id.transactionSummaryCategoryTextView)
-        val transactionDateRecurrenceLabel = view.findViewById<TextView>(R.id.transactionSummaryDateRecurrenceTextView)
+        val transactionAmount = view.findViewById<TextView>(R.id.transactionSummaryAmountTextView)
+        val transactionCategory =
+            view.findViewById<TextView>(R.id.transactionSummaryCategoryTextView)
+        val transactionDateRecurrenceLabel =
+            view.findViewById<TextView>(R.id.transactionSummaryDateRecurrenceTextView)
 
-        val transactionRecurrenceType = view.findViewById<TextView>(R.id.transactionSummaryRecurrenceTypeTextView)
-        val transactionRecurrenceStart = view.findViewById<TextView>(R.id.transactionSummaryRecurrenceStartTextView)
-        val transactionRecurrenceEnd = view.findViewById<TextView>(R.id.transactionSummaryRecurrenceEndTextView)
+        val transactionRecurrenceType =
+            view.findViewById<TextView>(R.id.transactionSummaryRecurrenceTypeTextView)
+        val transactionRecurrenceStart =
+            view.findViewById<TextView>(R.id.transactionSummaryRecurrenceStartTextView)
+        val transactionRecurrenceEnd =
+            view.findViewById<TextView>(R.id.transactionSummaryRecurrenceEndTextView)
 
         val transactionDate = view.findViewById<TextView>(R.id.transactionSummaryDateTextView)
 
-        val transactionRecurrenceLayout = view.findViewById<ConstraintLayout>(R.id.transactionSummaryRecurrenceConstraintLayout)
+        val transactionRecurrenceLayout =
+            view.findViewById<ConstraintLayout>(R.id.transactionSummaryRecurrenceConstraintLayout)
 
         val transactionCancelButton = view.findViewById<Button>(R.id.transactionSummaryCancelButton)
-        val transactionValidateButton = view.findViewById<Button>(R.id.transactionSummaryValidateButton)
+        val transactionValidateButton =
+            view.findViewById<Button>(R.id.transactionSummaryValidateButton)
 
         val map = requireArguments().getSerializable("transaction") as HashMap<String, Any?>
         transactionViewModel.transaction = Transaction.fromParcelableHashMap(map)
@@ -65,12 +72,21 @@ class TransactionSummaryFragment : Fragment() {
         transactionName.text = transactionViewModel.transaction.title
         transactionAmount.apply {
             text = tools.formatCurrency(transactionViewModel.transaction.amount)
-            setTextColor(tools.getCurrencyTextColor(requireContext(),transactionViewModel.transaction.amount))
+            setTextColor(
+                tools.getCurrencyTextColor(
+                    requireContext(),
+                    transactionViewModel.transaction.amount
+                )
+            )
         }
 
-        transactionCategory.text =  "${getString(R.string.category)} : ${getString(TransactionCategory.stringToTransactionCategory(transactionViewModel.transaction.category).text)}"
+        transactionCategory.text = "${getString(R.string.category)} : ${
+            getString(
+                TransactionCategory.stringToTransactionCategory(transactionViewModel.transaction.category).text
+            )
+        }"
 
-        if (transactionViewModel.transaction.recurrence == null){
+        if (transactionViewModel.transaction.recurrence == null) {
             transactionDateRecurrenceLabel.text = getString(R.string.transaction_date)
             transactionRecurrenceLayout.visibility = View.GONE
             transactionDate.visibility = View.VISIBLE
@@ -81,11 +97,12 @@ class TransactionSummaryFragment : Fragment() {
         } else {
             transactionDateRecurrenceLabel.text = getString(R.string.recurrence)
             transactionDate.visibility = View.GONE
-            transactionRecurrenceType.text = transactionViewModel.transaction.recurrence?.type?.let {
-                RecurrenceType.stringToRecurrenceType(
-                    it
-                ).text
-            }?.let { getString(it) }
+            transactionRecurrenceType.text =
+                transactionViewModel.transaction.recurrence?.type?.let {
+                    RecurrenceType.stringToRecurrenceType(
+                        it
+                    ).text
+                }?.let { getString(it) }
             transactionRecurrenceStart.text = "${getString(R.string.from_the)} : ${
                 transactionViewModel.transaction.recurrence?.start?.toDate()
                     ?.let { SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(it) }

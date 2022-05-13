@@ -1,6 +1,5 @@
 package fr.univ.lyon1.lpiem.ratus.ui.profile
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.Menu
@@ -42,7 +41,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (FirebaseAuth.getInstance().currentUser == null){
+        if (FirebaseAuth.getInstance().currentUser == null) {
             finish()
         }
     }

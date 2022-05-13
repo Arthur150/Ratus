@@ -14,12 +14,12 @@ import kotlinx.coroutines.launch
 class HomePageViewModel(
     private val getUserUseCase: GetUserUseCase,
     private val getRandomTricksUseCase: GetRandomTricksUseCase,
-    private val getUserFundsUseCase: GetUserFundsUseCase
+    private val getUserFundsUseCase: GetUserFundsUseCase,
 ) : ViewModel() {
     private val user: MutableLiveData<User> = MutableLiveData()
     private val funds: MutableLiveData<List<Fund>> = MutableLiveData()
 
-    val tricks : LiveData<List<Trick>> = liveData {
+    val tricks: LiveData<List<Trick>> = liveData {
         emit(getRandomTricksUseCase.invoke())
     }
 

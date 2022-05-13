@@ -13,4 +13,12 @@ class FundRepositoryImpl(
     override suspend fun getFundWithID(id: String): Fund {
         return dataSource.getFundWithID(id).getOrThrow()
     }
+
+    override suspend fun addContributor(id: String, uid: String): Fund {
+        return dataSource.addContributor(id, uid).getOrThrow()
+    }
+
+    override suspend fun createFund(newFund: Fund): Fund {
+        return dataSource.createFund(newFund).getOrThrow()
+    }
 }

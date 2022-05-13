@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
-import fr.univ.lyon1.lpiem.ratus.ui.homePage.TrickAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TrickListFragment : Fragment() {

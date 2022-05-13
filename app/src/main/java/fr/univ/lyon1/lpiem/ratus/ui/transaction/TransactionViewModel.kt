@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import fr.univ.lyon1.lpiem.ratus.domain.AddTransactionUseCase
-import fr.univ.lyon1.lpiem.ratus.domain.GetUserUseCase
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
 import fr.univ.lyon1.lpiem.ratus.model.User
 import kotlinx.coroutines.Dispatchers
@@ -24,13 +23,15 @@ class TransactionViewModel(
         return user
     }
 
-    fun sendTransaction(){
+    fun sendTransaction() {
         viewModelScope.launch(Dispatchers.IO) {
             FirebaseAuth.getInstance().currentUser?.uid?.let { it1 ->
-                user.postValue(addTransactionUseCase.invoke(
-                    it1,
-                    transaction
-                ))
+                user.postValue(
+                    addTransactionUseCase.invoke(
+                        it1,
+                        transaction
+                    )
+                )
             }
         }
     }

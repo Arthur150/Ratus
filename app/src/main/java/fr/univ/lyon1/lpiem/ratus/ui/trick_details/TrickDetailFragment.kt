@@ -13,8 +13,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.net.URLDecoder
 
 
-class TrickDetailFragment : Fragment()
-{
+class TrickDetailFragment : Fragment() {
 
     private val viewModel by viewModel<TrickDetailViewModel>()
 

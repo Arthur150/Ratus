@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.R
 import fr.univ.lyon1.lpiem.ratus.databinding.ViewHolderBigTrickBinding
-import fr.univ.lyon1.lpiem.ratus.databinding.ViewHolderTrickBinding
 import fr.univ.lyon1.lpiem.ratus.model.Trick
 
 
@@ -33,10 +32,13 @@ class TrickListViewHolder private constructor(
 
     fun bind(trick: Trick) {
 
-        with(binding){
+        with(binding) {
             root.setOnClickListener { view ->
                 val bundle = bundleOf("trickId" to trick.id)
-                view.findNavController().navigate(fr.univ.lyon1.lpiem.ratus.R.id.action_trickListFragment_to_trickDetailFragment, bundle)
+                view.findNavController().navigate(
+                    fr.univ.lyon1.lpiem.ratus.R.id.action_trickListFragment_to_trickDetailFragment,
+                    bundle
+                )
             }
             val theme: Theme = root.context.theme
             val cardColor = TypedValue()
@@ -51,8 +53,7 @@ class TrickListViewHolder private constructor(
                 bigCardView.setCardBackgroundColor(cardColor.data)
                 bigTrickTitle.setTextColor(textColor.data)
                 bigTrickDesc.setTextColor(textColor.data)
-            }
-            else {
+            } else {
                 alternativeBigTrickImage.load(trick.image)
                 alternativeBigTrickTitle.text = trick.title
                 alternativeBigTrickDesc.text = trick.description

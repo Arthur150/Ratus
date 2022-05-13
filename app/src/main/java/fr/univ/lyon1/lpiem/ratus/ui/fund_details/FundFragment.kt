@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.os.bundleOf
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -49,12 +51,14 @@ class FundFragment : Fragment() {
         }
         val editButton = view.findViewById<FloatingActionButton>(R.id.fundEditButton)
         val contributorsRecyclerView = view.findViewById<RecyclerView>(R.id.fundDetailContributors)
-        contributorsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        contributorsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         viewModel.getFund().observe(viewLifecycleOwner) { fund ->
             view.findViewById<TextView>(R.id.fundDetailTitle).text = fund.title
-            view.findViewById<TextView>(R.id.fundDetailAmount).text = tools.formatAmount(fund.amount)
-            val percent = ((fund.amount/fund.goal) * 100).roundToInt()
+            view.findViewById<TextView>(R.id.fundDetailAmount).text =
+                tools.formatAmount(fund.amount)
+            val percent = ((fund.amount / fund.goal) * 100).roundToInt()
             view.findViewById<TextView>(R.id.fundDetailPercent).text = "$percent%"
             view.findViewById<ProgressBar>(R.id.fundDetailProgressBar).let {
                 it.max = fund.goal.roundToInt()
@@ -65,6 +69,36 @@ class FundFragment : Fragment() {
             editButton.setOnClickListener {
                 val bundle = bundleOf("fundId" to fund.id)
                 findNavController().navigate(R.id.action_fundFragment_to_editFundFragment,bundle)
+            }
+
+            val addContributorView =
+                View.inflate(requireContext(), R.layout.add_contributor_layout, null)
+
+            val alertDialog = AlertDialog.Builder(requireContext())
+                .setView(addContributorView)
+                .create()
+
+            addContributorView.findViewById<Button>(R.id.addCancelButton).setOnClickListener {
+                alertDialog.cancel()
+            }
+
+            addContributorView.findViewById<Button>(R.id.addContributorPopupButton)
+                .setOnClickListener {
+                    val uid = addContributorView.findViewById<EditText>(R.id.userUidInput).text
+
+                    if (uid.isNotEmpty()) {
+                        viewModel.addContributor(uid.toString())
+                        alertDialog.cancel()
+                    }
+                }
+
+            viewModel.getError().observe(viewLifecycleOwner) {
+                Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                alertDialog.show()
+            }
+
+            view.findViewById<ImageView>(R.id.fundDetailAddContributor).setOnClickListener {
+                alertDialog.show()
             }
         }
 

@@ -6,7 +6,6 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import fr.univ.lyon1.lpiem.ratus.model.Transaction
-import fr.univ.lyon1.lpiem.ratus.model.User
 import kotlinx.coroutines.tasks.await
 
 class TransactionNetworking {
@@ -18,7 +17,7 @@ class TransactionNetworking {
 
     private val db = Firebase.firestore
 
-    suspend fun getTransaction(transaction : DocumentReference) : DocumentSnapshot {
+    suspend fun getTransaction(transaction: DocumentReference): DocumentSnapshot {
         return transaction
             .get()
             .addOnFailureListener { exception ->
@@ -27,7 +26,7 @@ class TransactionNetworking {
             .await()
     }
 
-    suspend fun addTransaction(transaction : Transaction) : DocumentReference {
+    suspend fun addTransaction(transaction: Transaction): DocumentReference {
         return db.collection(COLLECTION_NAME)
             .add(transaction.toHashMap())
             .addOnFailureListener {

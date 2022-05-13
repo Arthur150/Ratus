@@ -1,6 +1,6 @@
 package fr.univ.lyon1.lpiem.ratus.model
 
-import java.io.Serializable
+import com.google.firebase.firestore.DocumentReference
 
 data class Fund(
     val id: String = "",
@@ -8,4 +8,13 @@ data class Fund(
     val goal: Double = 0.0,
     val amount: Double = 0.0,
     val title: String = ""
-) : Serializable
+) {
+    fun toFirebaseFund(contributorList: List<DocumentReference>): FirebaseFund {
+        return FirebaseFund(
+            contributors = contributorList,
+            goal = goal,
+            amount = amount,
+            title = title
+        )
+    }
+}

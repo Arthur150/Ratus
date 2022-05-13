@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class FundListViewModel(
     private val getUserFundsUseCase: GetUserFundsUseCase
-) : ViewModel(){
+) : ViewModel() {
 
     private val funds: MutableLiveData<List<Fund>> = MutableLiveData()
 
