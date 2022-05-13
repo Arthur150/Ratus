@@ -82,6 +82,9 @@ class FundNetworking {
             .add(firebaseFund.toHashMap())
             .await()
 
+        val document = newFundRef.get().await()
+        db.collection("funds").document(document.id).update("id",document.id).await()
+
         return newFundRef.get()
             .await()
     }

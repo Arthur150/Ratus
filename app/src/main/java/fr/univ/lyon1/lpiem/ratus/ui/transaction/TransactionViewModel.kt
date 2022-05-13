@@ -1,5 +1,6 @@
 package fr.univ.lyon1.lpiem.ratus.ui.transaction
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,7 +17,11 @@ class TransactionViewModel(
 
     var transaction = Transaction()
 
-    val user = MutableLiveData<User>()
+    private val user = MutableLiveData<User>()
+
+    fun getUser(): LiveData<User> {
+        return user
+    }
 
     fun sendTransaction() {
         viewModelScope.launch(Dispatchers.IO) {

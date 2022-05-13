@@ -4,11 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
+import android.widget.TextView
+import androidx.core.os.bundleOf
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import fr.univ.lyon1.lpiem.ratus.MainActivity
 import fr.univ.lyon1.lpiem.ratus.R
 import fr.univ.lyon1.lpiem.ratus.ui.Tools
@@ -36,20 +41,20 @@ class FundFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as MainActivity).supportActionBar?.apply {
-            title = ""
+            title = getString(R.string.fund)
             setDisplayHomeAsUpEnabled(true)
         }
         val id = arguments?.getString("fundId")
 
         if (id != null) {
-            viewModel.getFund(id)
+            viewModel.loadFund(id)
         }
-
+        val editButton = view.findViewById<FloatingActionButton>(R.id.fundEditButton)
         val contributorsRecyclerView = view.findViewById<RecyclerView>(R.id.fundDetailContributors)
         contributorsRecyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
-        viewModel.fund.observe(viewLifecycleOwner) { fund ->
+        viewModel.getFund().observe(viewLifecycleOwner) { fund ->
             view.findViewById<TextView>(R.id.fundDetailTitle).text = fund.title
             view.findViewById<TextView>(R.id.fundDetailAmount).text =
                 tools.formatAmount(fund.amount)
@@ -60,6 +65,11 @@ class FundFragment : Fragment() {
                 it.progress = fund.amount.roundToInt()
             }
             contributorsRecyclerView.adapter = UserAdapter(fund.contributors)
+
+            editButton.setOnClickListener {
+                val bundle = bundleOf("fundId" to fund.id)
+                findNavController().navigate(R.id.action_fundFragment_to_editFundFragment,bundle)
+            }
 
             val addContributorView =
                 View.inflate(requireContext(), R.layout.add_contributor_layout, null)

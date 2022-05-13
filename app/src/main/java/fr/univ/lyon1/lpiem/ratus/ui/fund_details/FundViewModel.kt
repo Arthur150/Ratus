@@ -15,7 +15,7 @@ class FundViewModel(
     private val getFundUseCase: GetFundUseCase,
     private val addContributorUseCase: AddContributorUseCase
 ) : ViewModel() {
-    val fund = MutableLiveData<Fund>()
+    private val fund = MutableLiveData<Fund>()
 
     private val error = MutableLiveData<UserNotFoundException>()
 
@@ -23,7 +23,11 @@ class FundViewModel(
         return error
     }
 
-    fun getFund(id: String) {
+    fun getFund(): LiveData<Fund> {
+        return fund
+    }
+
+    fun loadFund(id : String){
         viewModelScope.launch(Dispatchers.IO) {
             fund.postValue(getFundUseCase.invoke(id))
         }

@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/editFundFragment"
-        android:name="fr.univ.lyon1.lpiem.ratus.EditFundFragment"
+        android:name="fr.univ.lyon1.lpiem.ratus.ui.fundEdit.EditFundFragment"
         android:label="fragment_edit_fund"
         tools:layout="@layout/fragment_edit_fund">
         <action
@@ -98,6 +98,9 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
+        <argument
+            android:name="fundId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/fundListFragment"

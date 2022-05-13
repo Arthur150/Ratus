@@ -88,7 +88,7 @@
                     android:backgroundTint="?attr/colorOnSecondary"
                     android:elevation="10dp"
                     android:text="@string/disconnect"
-                    android:textColor="?attr/colorError"
+                    android:textColor="@color/red"
                     android:theme="@style/Theme.Ratus"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
