@@ -33,7 +33,7 @@ object UiModules {
             FundViewModel(get(), get())
         }
         viewModel {
-            EditFundViewModel(get(),get())
+            EditFundViewModel(get(),get(),get(),get())
         }
         viewModel {
             ProfileViewModel(get())

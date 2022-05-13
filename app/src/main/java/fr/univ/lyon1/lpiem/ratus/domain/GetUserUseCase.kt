@@ -6,7 +6,7 @@ import fr.univ.lyon1.lpiem.ratus.model.User
 class GetUserUseCase(
     private val userRepository: UserRepository
 ) {
-    suspend operator fun invoke(uid: String): User {
-        return userRepository.getUserWithUID(uid)
+    suspend operator fun invoke(uid: String, canCreateUser: Boolean = true): User {
+        return userRepository.getUserWithUID(uid,canCreateUser)
     }
 }

@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -53,13 +55,17 @@ class EditFundFragment : Fragment() {
             contributorLayout.visibility = View.VISIBLE
             viewModel.loadUser()
             viewModel.getUser().observe(viewLifecycleOwner) { user ->
-                viewModel.addUserInContributors(user)
+                viewModel.addUserInContributors(user.uid)
             }
         }
 
         (activity as MainActivity).supportActionBar?.apply {
             title = titleToolBar
-            setDisplayHomeAsUpEnabled(false)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        viewModel.getError().observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.getFund().observe(viewLifecycleOwner) { fund ->
@@ -74,6 +80,13 @@ class EditFundFragment : Fragment() {
             (contributorsRecyclerView.adapter as UserAdapter).updateValue(contributors)
         }
 
+        addContributorImageView.setOnClickListener {
+            if (contributorsEditText.text.toString().isNotEmpty()){
+                viewModel.addUserInContributors(contributorsEditText.text.toString())
+                contributorsEditText.text.clear()
+            }
+        }
+
         cancelButton.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -81,7 +94,14 @@ class EditFundFragment : Fragment() {
         validateButton.setOnClickListener {
             if (titleEditText.text.toString().isNotEmpty() && goalEditText.text.toString().isNotEmpty() && !viewModel.getContributors().value.isNullOrEmpty()) {
                 viewModel.sendFund(titleEditText.text.toString(),goalEditText.text.toString().toDouble())
-                //TODO go to fund detail with fundId
+                viewModel.getFund().observe(viewLifecycleOwner) { fund ->
+                    val bundle = bundleOf("fundId" to fund.id)
+                    if (fundId.isNullOrEmpty()) {
+                        findNavController().navigate(R.id.action_editFundFragment_to_fundFragment,bundle)
+                    } else {
+                        findNavController().popBackStack()
+                    }
+                }
             }
         }
 
