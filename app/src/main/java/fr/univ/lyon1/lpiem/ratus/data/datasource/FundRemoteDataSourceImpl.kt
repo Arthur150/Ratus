@@ -106,4 +106,28 @@ class FundRemoteDataSourceImpl(
             Result.failure(t)
         }
     }
+
+    override suspend fun updateFund(updatedFund: Fund): Result<Fund> {
+        return try {
+            val document = networking.updateFund(updatedFund)
+            val firebaseFund = document?.toObject(FirebaseFund::class.java)
+
+            val contributors: ArrayList<User> = arrayListOf()
+            for (ref in firebaseFund?.contributors ?: arrayListOf()) {
+                val userDocument = userNetworking.getUserWithReference(ref)
+                userDocument.toObject(FirebaseUser::class.java)?.let { contributor ->
+                    contributors.add(contributor.toUser(arrayListOf()))
+                }
+            }
+            val fund = firebaseFund?.toFund(contributors)
+
+            if (fund != null) {
+                Result.success(fund)
+            } else {
+                Result.failure(IllegalStateException())
+            }
+        } catch (t: Throwable) {
+            Result.failure(t)
+        }
+    }
 }

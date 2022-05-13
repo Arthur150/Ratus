@@ -21,4 +21,8 @@ class FundRepositoryImpl(
     override suspend fun createFund(newFund: Fund): Fund {
         return dataSource.createFund(newFund).getOrThrow()
     }
+
+    override suspend fun updateFund(updatedFund: Fund): Fund {
+        return dataSource.updateFund(updatedFund).getOrThrow()
+    }
 }
