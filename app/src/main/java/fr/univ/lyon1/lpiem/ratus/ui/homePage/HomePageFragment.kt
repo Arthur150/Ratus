@@ -85,7 +85,7 @@ class HomePageFragment : Fragment() {
             tipsRecyclerView.adapter = TrickAdapter(trickList)
         }
 
-        viewModel.funds.observe(viewLifecycleOwner) { fundList ->
+        viewModel.getFunds().observe(viewLifecycleOwner) { fundList ->
             fundsRecyclerView.adapter = FundAdapter(fundList)
         }
 
@@ -100,7 +100,7 @@ class HomePageFragment : Fragment() {
 
         fundsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.user.observe(viewLifecycleOwner) { user ->
+        viewModel.getUser().observe(viewLifecycleOwner) { user ->
             budgetCard.setOnClickListener {
                 findNavController().navigate(R.id.action_homePageFragment_to_budgetFragment)
             }
@@ -146,7 +146,7 @@ class HomePageFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getUserDetails()
+        viewModel.loadUserDetails()
     }
 
 }

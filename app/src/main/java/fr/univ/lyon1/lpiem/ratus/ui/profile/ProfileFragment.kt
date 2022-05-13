@@ -30,7 +30,12 @@ class ProfileFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
-        viewModel.user.observe(viewLifecycleOwner) { user ->
+        (activity as ProfileActivity).supportActionBar?.apply {
+            title = getString(R.string.profile)
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+        viewModel.getUser().observe(viewLifecycleOwner) { user ->
             view.findViewById<TextView>(R.id.username).text = user.username
             view.findViewById<TextView>(R.id.userUID).text = user.uid
             view.findViewById<ImageView>(R.id.userThumbnail).load(user.thumbnail)
@@ -58,7 +63,7 @@ class ProfileFragment : Fragment() {
         }
 
 
-        viewModel.getUser()
+        viewModel.loadUser()
 
         view.findViewById<Button>(R.id.disconnectButton).setOnClickListener {
             FirebaseAuth.getInstance().signOut()

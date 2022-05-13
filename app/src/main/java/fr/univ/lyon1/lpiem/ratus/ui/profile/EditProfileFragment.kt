@@ -13,6 +13,13 @@ class EditProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_edit_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_edit_profile, container, false)
+
+        (activity as ProfileActivity).supportActionBar?.apply {
+            title = getString(R.string.edit_profile)
+            setDisplayHomeAsUpEnabled(false)
+        }
+
+        return view
     }
 }

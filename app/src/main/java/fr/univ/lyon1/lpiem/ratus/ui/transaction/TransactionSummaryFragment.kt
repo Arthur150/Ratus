@@ -107,7 +107,7 @@ class TransactionSummaryFragment : Fragment() {
             alertDialog.show()
         }
 
-        transactionViewModel.user.observe(viewLifecycleOwner){
+        transactionViewModel.getUser().observe(viewLifecycleOwner){
             alertDialog.dismiss()
             findNavController().navigate(R.id.action_transactionSummaryFragment_to_homePageFragment)
         }

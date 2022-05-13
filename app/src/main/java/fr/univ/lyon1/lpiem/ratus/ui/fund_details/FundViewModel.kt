@@ -1,5 +1,6 @@
 package fr.univ.lyon1.lpiem.ratus.ui.fund_details
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,9 +12,13 @@ import kotlinx.coroutines.launch
 class FundViewModel(
     private val getFundUseCase: GetFundUseCase
 ) : ViewModel() {
-    val fund = MutableLiveData<Fund>()
+    private val fund = MutableLiveData<Fund>()
 
-    fun getFund(id : String){
+    fun getFund(): LiveData<Fund> {
+        return fund
+    }
+
+    fun loadFund(id : String){
         viewModelScope.launch(Dispatchers.IO) {
             fund.postValue(getFundUseCase.invoke(id))
         }

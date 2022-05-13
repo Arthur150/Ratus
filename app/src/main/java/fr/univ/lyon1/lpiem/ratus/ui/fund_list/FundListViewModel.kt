@@ -1,5 +1,6 @@
 package fr.univ.lyon1.lpiem.ratus.ui.fund_list
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,9 +14,13 @@ class FundListViewModel(
     private val getUserFundsUseCase: GetUserFundsUseCase
 ) : ViewModel(){
 
-    val funds: MutableLiveData<List<Fund>> = MutableLiveData()
+    private val funds: MutableLiveData<List<Fund>> = MutableLiveData()
 
-    fun getFunds() {
+    fun getFunds(): LiveData<List<Fund>> {
+        return funds
+    }
+
+    fun loadFunds() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
             viewModelScope.launch(Dispatchers.IO) {

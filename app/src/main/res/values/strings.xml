@@ -78,4 +78,13 @@
     <string name="transaction_date">Transaction\'s date</string>
     <string name="recurrence">Recurrence</string>
     <string name="loading">loading</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="create_fund">Create fund</string>
+    <string name="edit_fund">Edit fund</string>
+    <string name="title">Title</string>
+    <string name="my_fund">My fund</string>
+    <string name="euro_symbol">€</string>
+    <string name="_1500_00">1500.00</string>
+    <string name="goal">Goal</string>
+    <string name="fund">Fund</string>
 </resources>

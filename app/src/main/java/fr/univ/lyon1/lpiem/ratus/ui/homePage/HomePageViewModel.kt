@@ -16,15 +16,23 @@ class HomePageViewModel(
     private val getRandomTricksUseCase: GetRandomTricksUseCase,
     private val getUserFundsUseCase: GetUserFundsUseCase
 ) : ViewModel() {
-    val user: MutableLiveData<User> = MutableLiveData()
-    val funds: MutableLiveData<List<Fund>> = MutableLiveData()
+    private val user: MutableLiveData<User> = MutableLiveData()
+    private val funds: MutableLiveData<List<Fund>> = MutableLiveData()
 
     val tricks : LiveData<List<Trick>> = liveData {
         emit(getRandomTricksUseCase.invoke())
     }
 
+    fun getUser(): LiveData<User> {
+        return user
+    }
 
-    fun getUserDetails() {
+    fun getFunds(): LiveData<List<Fund>> {
+        return funds
+    }
+
+
+    fun loadUserDetails() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser != null) {
             viewModelScope.launch(Dispatchers.IO) {

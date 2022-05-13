@@ -36,13 +36,13 @@ class TrickDetailFragment : Fragment()
         }
 
         if (id != null){
-            viewModel.getTrick(id)
+            viewModel.loadTrick(id)
         }
 
         val webView = view.findViewById<WebView>(R.id.webView)
         webView.webViewClient = WebViewClient()
 
-        viewModel.trick.observe(viewLifecycleOwner) { trick ->
+        viewModel.getTrick().observe(viewLifecycleOwner) { trick ->
             webView.loadUrl(URLDecoder.decode(trick.content_url, "UTF-8"))
             (activity as MainActivity).supportActionBar?.apply {
                 title = trick.title.replaceFirstChar { it.uppercase() }

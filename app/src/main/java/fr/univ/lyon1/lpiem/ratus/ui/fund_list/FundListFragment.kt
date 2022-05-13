@@ -33,13 +33,13 @@ class FundListFragment : Fragment() {
         val fundRecyclerView = view.findViewById<RecyclerView>(R.id.fund_list)
         fundRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.funds.observe(viewLifecycleOwner) { fundList ->
+        viewModel.getFunds().observe(viewLifecycleOwner) { fundList ->
             fundRecyclerView.adapter = FundAdapter(fundList)
         }
     }
 
     override fun onResume() {
         super.onResume()
-        viewModel.getFunds()
+        viewModel.loadFunds()
     }
 }
